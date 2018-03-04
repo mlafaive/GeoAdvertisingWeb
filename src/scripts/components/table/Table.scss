@@ -1,0 +1,194 @@
+.light-table {
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	margin: auto;
+    width: 100%;
+    position: relative;
+
+    .search-section {
+	    padding-bottom: .5em;
+	    width: 100%;
+	    text-align: right;
+	    div {
+	    	margin-left: auto;
+	    	margin-right: 0;
+	    	max-width: 20em;
+	    	width: 100%;
+	    }
+	}
+
+	.table-header {
+		text-align: center;
+		color: #009900;
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+
+    .hidden {
+    	display: none;
+    }
+
+    .info-loading {
+		width: 100%;
+		.loading-image {
+			margin-left: 45%;
+			margin-bottom: 2em;
+			width: 10%;
+		}
+	}
+
+    .virtual-table {
+    	width: 100%;
+    	overflow: auto;
+    	border: 1px solid #ddd;
+
+    	.no-rows {
+			width: 100%;
+			text-align: center;
+			font-style: italic;
+			padding-top: 1em;
+			padding-bottom: 1em; 
+		}
+
+		.odd, .even {
+			width: 100%;
+			height: 100%;
+		}
+
+		.odd {
+			background-color: #eef3f5;
+		}
+
+		.cell {
+			font-size: 11px;
+			line-height: 15px;
+			width: 100%;
+			height: 100%;
+			padding-left: 5px;
+			padding-right: 5px;
+			word-wrap: break-word;
+			white-space: initial;
+			border-right: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			display: flex;
+  			align-items: center;
+
+			&.colored {
+				background-color: #eef3f5;
+			}
+
+			div {
+				width: 100%;
+				text-align: center;
+			}
+		}
+
+		.header-wrapper {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			background-color: #eef3f5;
+
+			.asc, .desc {
+				position: absolute;
+				width: 100%;
+				height: 5px;
+			}
+
+			.asc {
+				background: linear-gradient(to top, #eef3f5, #9fbbc6);
+				top: 0px;
+			}
+
+			.desc {
+				background: linear-gradient(to bottom, #eef3f5, #9fbbc6);
+				bottom: 3px;
+			}
+
+			&:hover {
+				background-color: #cfdde3;
+				text-decoration: underline;
+				text-decoration-color: #0066cc;
+				.asc {
+					background: linear-gradient(to top, #cfdde3, #8fb0bd);
+				}
+
+				.desc {
+					background: linear-gradient(to bottom, #cfdde3, #8fb0bd);
+				}
+
+			}
+
+			.header-cell {
+				padding: 2.5px;
+				font-size: 12px;
+				color: #0066cc;
+				font-weight: bold;
+				width: 100%;
+				height: 100%;
+				word-wrap: break-word;
+				white-space: initial;
+				cursor: pointer;
+				text-transform: none;
+				border-right: 1px solid #ddd;
+				border-bottom: 3px solid #b3b3b3;
+				display: flex;
+	  			align-items: center;
+
+
+				div {
+					width: 100%;
+					text-align: center;
+				}
+			}
+		}
+
+		.floating-image {
+			visibility: visible;
+			position: fixed;
+			width: 200px;
+			border-right-color: #0066cc;
+			border-right-width: 0.25em;
+			border-right-style: solid;
+			border-left-color: #0066cc;
+			border-left-width: 0.25em;
+			border-left-style: solid;
+			border-bottom-color: #0066cc;
+			border-bottom-width: 0.25em;
+			border-bottom-style: solid;
+			cursor: pointer;
+			z-index: 100;
+
+			.image-header {
+				width: 100%;
+				text-align: center;
+				font-size: 10px;
+				background-color: #0066cc;
+				padding: 0.5em;
+				.header-text {
+					color: white;
+				}
+			}
+
+
+			img {
+				width: 100%;
+			}
+		}
+
+		// virtualized table style overrides
+		.ReactVirtualized__Table__headerColumn,
+		.ReactVirtualized__Table__rowColumn {
+			margin: 0px !important;
+			height: 100% !important;
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,37 @@
+.sidebar{
+	text-align: center;
+	.title{
+		margin-top: 20px;
+		color: #009900;
+		font-weight: bold;
+	}
+	.sidebar-nav {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 10px;
+		border-bottom: 1px solid grey;
+		border-top: 1px solid grey;
+		text-align: left;
+		background-color: #ffffcc;
+
+		&.minor{
+			background-color: white;
+		}
+		.item{
+			line-height: 1.7em;
+		}
+	}
+
+	.info-loading {
+		width: 100%;
+		border-bottom: 1px solid grey;
+		border-top: 1px solid grey;
+		background-color: white;
+		.loading-image {
+			width: 5em;
+			margin-left: 0;
+			margin-top: 0;
+		}
+	}
+
+}

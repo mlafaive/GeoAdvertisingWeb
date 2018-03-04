@@ -1,0 +1,10 @@
+.search {
+	width: 100%;
+	.submit-button {
+		 cursor: pointer;
+		 &:hover {
+		 	background-color: #cccccc;
+		 	color: black;
+		 }
+	}
+}

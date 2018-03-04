@@ -1,0 +1,40 @@
+
+.list {
+	.hidden {
+		display: none;
+	}
+
+	.search-section {
+	    width: 20em;
+	    margin-bottom: .5em;
+	}
+
+	.list-data {
+
+	}
+
+	.expand {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		margin-left: 45%;
+		color: #337ab7;
+		cursor: pointer;
+		font-size: 15px;
+		font-weight: bold;
+
+		&:hover {
+			text-decoration: underline;
+			text-decoration-color: #337ab7 
+		}
+	}
+
+	.info-loading {
+		width: 100%;
+		.loading-image {
+			margin-left: 45%;
+			margin-bottom: 2em;
+			width: 10%;
+		}
+	}
+
+}
