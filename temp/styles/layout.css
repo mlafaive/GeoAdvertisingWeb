@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #05c46b;
+    --secondary: #0be881;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.badge {
+    padding: 0.5em;
+}
+
+.fbox {
+    margin: 1em;
+    max-width: 450px;
+}
+
+.home-gfx {
+    height: 400px;
+}
+
+.tagline {
+    font-size: 3em;
+    color: var(--primary);
+    margin: .3em 0 .5em 0;
+}
