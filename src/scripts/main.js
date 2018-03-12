@@ -7,7 +7,9 @@ class Main extends React.Component {
   render() {
     return(
     	<div>
-    		Hello World!
+    		Geode
+        <br/>
+        Local gems near you
     	</div>
     );
   }

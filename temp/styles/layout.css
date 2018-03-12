@@ -68,13 +68,13 @@ form {
 form h1 {
     margin: 0 0 30px 0;
     text-align: center;
-    color: var(--s-blue);
+    color: var(--s-purple);
     font-size: 2em;
 }
 
 form h1 small {
     font-size: .6em;
-    color: var(--p-blue);
+    color: var(--p-purple);
 }
 
 form label {
@@ -90,7 +90,7 @@ form button {
     width: 100%;
     border:none;
     border-radius: .5em;
-    background-color: var(--s-blue);
+    background-color: var(--s-purple);
     padding: 1em;
     color: white;
     font-size: 1.2em;

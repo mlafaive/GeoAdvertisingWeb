@@ -42,8 +42,8 @@
 
 .current_nav {
     font-weight: bold;
-    color: black !important;
-    border-bottom: 2px solid var(--p-orange) !important;
+    color: #485460 !important;
+    border-bottom: 2px solid #d2dae2 !important;
 }
 
 @media (min-width: 400px) {
