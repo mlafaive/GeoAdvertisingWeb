@@ -5,8 +5,18 @@
 }
 
 :root {
+    /* https://flatuicolors.com/palette/se */
     --primary: #05c46b;
     --secondary: #0be881;
+    --p-yellow: #ffdd59;
+    --s-yellow: #ffd32a;
+    --p-orange: #ffc048;
+    --s-orange: #ffa801;
+    --p-purple: #575fcf;
+    --s-purple: #3c40c6;
+    --p-blue: #4bcffa;
+    --s-blue: #0fbcf9;
+
 }
 
 section {
@@ -15,13 +25,24 @@ section {
     margin-top: 2em;
 }
 
-.badge {
-    padding: 0.5em;
+.badges {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+.badges img {
+    padding: 1em;
 }
 
 .fbox {
-    margin: 1em;
-    max-width: 450px;
+    margin: 2em;
+    max-width: 50%;
+}
+
+.content {
+    padding: 2em;
+    padding-top: 3em;
 }
 
 .home-gfx {
@@ -32,4 +53,58 @@ section {
     font-size: 3em;
     color: var(--primary);
     margin: .3em 0 .5em 0;
+}
+
+/** CONTACT PAGE **/
+
+form {
+    max-width: 600px;
+    margin: 1em auto;
+    padding: 1.5em;
+    background: #f4f7f8;
+    border-radius: 8px;
+}
+
+form h1 {
+    margin: 0 0 30px 0;
+    text-align: center;
+    color: var(--s-blue);
+    font-size: 2em;
+}
+
+form h1 small {
+    font-size: .6em;
+    color: var(--p-blue);
+}
+
+form label {
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+form fieldset {
+  border: none;
+}
+
+form button {
+    width: 100%;
+    border:none;
+    border-radius: .5em;
+    background-color: var(--s-blue);
+    padding: 1em;
+    color: white;
+    font-size: 1.2em;
+}
+
+
+input, textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 1em;
+    padding: .5em;
+    width: 100%;
+    background-color: #e8eeef;
+    color: #363636;
+    font-size: 16px;
 }

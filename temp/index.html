@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,12 +10,6 @@
 	<link href="styles/nav.css" rel="stylesheet">
 	<link href="styles/layout.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-	 crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -24,13 +19,13 @@
 		</span>
 		<ul class="nav">
 			<li>
-				<a href="#">Home</a>
+				<a href="#" id="nav_landing">Home</a>
 			</li>
 			<li>
-				<a href="#">About</a>
+				<a href="#" id="nav_about">About</a>
 			</li>
 			<li>
-				<a href="#">Contact</a>
+				<a href="#" id="nav_contact">Contact</a>
 			</li>
 			<li>
 				<a href="#">Log In</a>
@@ -39,7 +34,7 @@
 	</header>
 
 	<section id="landing">
-		<div class="fbox">
+		<div class="fbox content">
 			<h1>Geode</h1>
 			<h1 class="tagline">Find local gems</h1>
 			<p>A mobile application that sends you deals and sales for local businesses near you.</p>
@@ -57,9 +52,36 @@
 			<img class="home-gfx" src="img/placeholder.png" />
 		</div>
 	</section>
-	<section id="about"></section>
-	<section id="contact"></section>
 
+	<section id="about"></section>
+
+	<section id="contact">
+		<div class="fbox">
+			<form action="index.html" method="post">
+				<h1>Questions? <br><small>We'll get back to you ASAP</small></h1>
+				<fieldset>
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="user_name">
+
+					<label for="mail">Email:</label>
+					<input type="email" id="mail" name="user_email">
+
+					<label for="msg">Message:</label>
+					<textarea id="msg" name="msg" rows="4"></textarea>
+				</fieldset>
+				<button type="submit">Send Message</button>
+			</form>
+		</div>
+	</section>
 </body>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+ crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+ crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+ crossorigin="anonymous"></script>
+<script src="scripts/nav.js"></script>
 
 </html>

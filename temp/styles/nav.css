@@ -8,7 +8,7 @@
     color: var(--primary);
 }
 
-.logo a, .nav a{
+.logo a, .nav a {
     /* text-transform: uppercase; */
     text-align: center;
     display: block;
@@ -22,7 +22,7 @@
     overflow: hidden;
 }
 
-.nav li{
+.nav li {
     float: right;
     color: grey;
 }
@@ -38,6 +38,12 @@
 .nav li a:hover {
     color: black;
     border-bottom: 2px solid var(--primary);
+}
+
+.current_nav {
+    font-weight: bold;
+    color: black !important;
+    border-bottom: 2px solid var(--p-orange) !important;
 }
 
 @media (min-width: 400px) {
