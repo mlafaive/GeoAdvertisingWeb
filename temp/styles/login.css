@@ -53,3 +53,31 @@
 .t_des {
     word-wrap: break-word;
 }
+
+#ad-chart{
+    width: 50vw;
+    min-width: 800px;
+}
+
+.graphdata {
+    width: 50vw;
+}
+
+.note-text {
+    padding: 1em;
+    border: 1px solid grey;
+    margin: 1em;
+}
+
+.bot {
+    margin-bottom: 1em;
+}
+
+.temp-ad h3 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.temp-ad tr, .temp-ad td {
+    padding: 1em;
+}
