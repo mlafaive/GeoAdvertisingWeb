@@ -27,7 +27,7 @@ $(".nav_logout").click(function () {
 
 $("#login-form").submit(function(event){
     console.log(":)")
-    window.location.href = 'login.html';
+    window.location.href = 'logged_on.html';
     event.preventDefault();
 })
 
