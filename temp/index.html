@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Geode Login</title>
+	<title>Geode</title>
 
 	<link href="styles/nav.css" rel="stylesheet">
 	<link href="styles/layout.css" rel="stylesheet">
@@ -19,16 +19,16 @@
 		</span>
 		<ul class="nav">
 			<li>
-				<a href="#" id="nav_landing">Home</a>
+				<a href="#" class="nav_landing">Home</a>
 			</li>
 			<li>
-				<a href="#" id="nav_about">About</a>
+				<a href="#" class="nav_about">About</a>
 			</li>
 			<li>
-				<a href="#" id="nav_contact">Contact</a>
+				<a href="#" class="nav_contact">Contact</a>
 			</li>
 			<li>
-				<a href="#">Log In</a>
+				<a href="#" class="nav_login">Log In</a>
 			</li>
 		</ul>
 	</header>
@@ -37,11 +37,14 @@
 		<div class="fbox content">
 			<h1>Geode</h1>
 			<h1 class="tagline">Find local gems</h1>
-			<p>A mobile application that sends you deals and sales for local businesses near you.</p>
+			<p class="bigger-text">
+				A mobile application that sends you deals and sales for local businesses near you. Sign up to find relevant deals near you!</p>
 			<br>
 			<br>
-			<a href="#">
-				<p>Learn More</p>
+			<a href="#" class="nav_about">
+				<p>
+					<b>Learn More</b>
+				</p>
 			</a>
 			<div class="badges">
 				<img class="badge" src="img/google-play-badge.svg" />
@@ -53,12 +56,37 @@
 		</div>
 	</section>
 
-	<section id="about"></section>
+	<section id="about">
+		<div class="fbox">
+			<h1 class="tagline">Geode is a...</h1>
+			<div class="explanations">
+				<p>
+					<b>...advertising platform</b>
+					that connects local business owners and consumers
+				</p>
+				<p>
+					<b>...mobile app</b>
+					that allows locals to view deals of community business owners
+				</p>
+				<p>
+					<b>...a senior design project</b>
+					that does something cool
+				</p>
+			</div>
+		</div>
+		<div class="fbox">
+			<img class="home-gfx" src="img/phones.png" />
+
+		</div>
+	</section>
 
 	<section id="contact">
 		<div class="fbox">
-			<form action="index.html" method="post">
-				<h1>Questions? <br><small>We'll get back to you ASAP</small></h1>
+			<form>
+				<h1>Questions?
+					<br>
+					<small>We'll get back to you ASAP</small>
+				</h1>
 				<fieldset>
 					<label for="name">Name:</label>
 					<input type="text" id="name" name="user_name">
@@ -71,6 +99,28 @@
 				</fieldset>
 				<button type="submit">Send Message</button>
 			</form>
+		</div>
+	</section>
+
+	<section id="login">
+		<div class="fbox">
+			<h1 class="tagline">Business Sign On</h1>
+			<form>
+				<fieldset>
+					<label for="name">Username:</label>
+					<input type="text" id="username" name="user_name">
+
+					<label for="mail">Password:</label>
+					<input type="password" id="password" name="user_email">
+
+				</fieldset>
+				<button type="submit">Log In</button>
+			</form>
+			<a href="#" class="link">
+				<p>No account? Sign up your business with Geode!</p>
+				
+			</a>
+			<p>.</p>
 		</div>
 	</section>
 </body>
