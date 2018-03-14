@@ -1,6 +1,8 @@
 .ads {
     display: flex;
-    flex-direction: column;
+    width: 60vw;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .ad-thumbnail {
@@ -28,4 +30,26 @@
 
 .ad-thumbnail tr{
     margin-top: .4em;
+}
+
+.all-ads {
+    margin: 1em;
+    margin-bottom: 2em;
+    width: 62vw;
+    border-collapse: collapse;
+    text-align: center;
+    border: none;
+}
+.all-ads th, .all-ads td{
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.all-ads tr:hover{
+    background-color: #f7f7f7;
+
+}
+
+.t_des {
+    word-wrap: break-word;
 }

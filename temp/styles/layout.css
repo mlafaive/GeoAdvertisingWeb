@@ -39,7 +39,16 @@ section {
     max-width: 50%;
 }
 
+.single {
+    max-width: 60vw;
+}
+
+.no-top{
+    margin-top: 0;
+}
+
 .content {
+    width: 40vw;
     padding: 2em;
     padding-top: 3em;
 }
