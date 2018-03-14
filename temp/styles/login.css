@@ -1,0 +1,31 @@
+.ads {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-thumbnail {
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: 1px solid #d2dae2;
+    transition: 0.5s all;
+}
+
+.ad-thumbnail:hover{
+    border: 1px solid var(--secondary);
+    background-color: #f7f7f7;
+}
+
+.ad-thumbnail h3{
+    text-align:  center;
+}
+
+.t_title {
+    font-weight: bold;
+    text-align: right;
+    padding: .1em .5em .1em .2em;
+}
+
+.ad-thumbnail tr{
+    margin-top: .4em;
+}

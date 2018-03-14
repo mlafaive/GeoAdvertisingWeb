@@ -54,6 +54,9 @@ section {
     margin: .3em 0 .5em 0;
 }
 
+.tagline span {
+    color: var(--s-purple);
+}
 
 /** CONTACT PAGE **/
 

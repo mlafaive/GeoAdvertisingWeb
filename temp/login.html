@@ -2,136 +2,139 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Geode Business</title>
+    <title>Geode Business</title>
 
-	<link href="styles/nav.css" rel="stylesheet">
-	<link href="styles/layout.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet">
+    <link href="styles/nav.css" rel="stylesheet">
+    <link href="styles/layout.css" rel="stylesheet">
+    <link href="styles/login.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" rel="stylesheet">
 </head>
 
 <body>
-	<header>
-		<span class="logo">
-			<a href="#">Geode</a>
-		</span>
-		<ul class="nav">
-			<li>
-				<a href="#" class="nav_landing">Dashboard</a>
-			</li>
-			<li>
-				<a href="#" class="nav_about">Ad Campaigns</a>
-			</li>
-			<li>
-				<a href="#" class="nav_contact">Settings</a>
-			</li>
-			<li>
-				<a href="#" class="nav_landing">Log Out</a>
-			</li>
-		</ul>
-	</header>
+    <header>
+        <span class="logo">
+            <a href="#">Geode</a>
+        </span>
+        <ul class="nav">
+            <li>
+                <a href="#" class="nav_dash">Dashboard</a>
+            </li>
+            <li>
+                <a href="#" class="nav_ads">Advertisements</a>
+            </li>
+            <li>
+                <a href="#" class="nav_settings">Settings</a>
+            </li>
+            <li>
+                <a href="#" class="nav_logout">Log Out</a>
+            </li>
+        </ul>
+    </header>
 
-	<section id="landing">
-		<div class="fbox content">
-			<h1>Geode</h1>
-			<h1 class="tagline">Find local gems</h1>
-			<p class="bigger-text">
-				A mobile application that sends you deals and sales for local businesses near you. Sign up to find relevant deals near you!</p>
-			<br>
-			<br>
-			<a href="#" class="nav_about">
-				<p>
-					<b>Learn More</b>
-				</p>
-			</a>
-			<div class="badges">
-				<img class="badge" src="img/google-play-badge.svg" />
-				<img class="badge" src="img/black_app_store.svg" />
-			</div>
-		</div>
-		<div class="fbox">
-			<img class="home-gfx" src="img/placeholder.png" />
-		</div>
-	</section>
+    <section id="dash">
+        <div class="fbox content">
+            <h1 class="tagline">Hello
+                <span>Bob's Bakery</span>
+            </h1>
+            <h1>Here are your current ads:</h1>
 
-	<section id="about">
-		<div class="fbox">
-			<h1 class="tagline">Geode is a...</h1>
-			<div class="explanations">
-				<p>
-					<b>...advertising platform</b>
-					that connects local business owners and consumers
-				</p>
-				<p>
-					<b>...mobile app</b>
-					that allows locals to view deals of community business owners
-				</p>
-				<p>
-					<b>...a senior design project</b>
-					that does something cool
-				</p>
-			</div>
-		</div>
-		<div class="fbox">
-			<img class="home-gfx" src="img/phones.png" />
+            <div class="ads">
+                    <div class="ad-thumbnail">
+                        <h3>$2 off dozen donuts</h3>
+                        <table>
+                            <tr>
+                                <td class="t_title">Start</td>
+                                <td>3/10/2018</td>
+                            </tr>
+                            <tr>
+                                <td class="t_title">End</td>
+                                <td>3/20/2018</td>
+                            </tr>
+                            <tr>
+                                <td class="t_title">Message</td>
+                                <td>Treat the office with something special!</td>
+                                </tr>
+                        </table>
+                    </div>
+                    <div class="ad-thumbnail">
+                        <h3>Buy 3 pastries get the 4th free</h3>
+                        <table>
+                            <tr>
+                                <td class="t_title">Start</td>
+                                <td>3/1/2018</td>
+                            </tr>
+                            <tr>
+                                <td class="t_title">End</td>
+                                <td>3/31/2018</td>
+                            </tr>
+                            <tr>
+                                <td class="t_title">Message</td>
+                                <td>March special: try our delicious pastries!</td>
+                                </tr>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </section>
 
-		</div>
-	</section>
+    <section id="ads">
+        <div class="fbox">
+            <h1 class="tagline">Geode is a...</h1>
+            <div class="explanations">
+                <p>
+                    <b>...advertising platform</b>
+                    that connects local business owners and consumers
+                </p>
+                <p>
+                    <b>...mobile app</b>
+                    that allows locals to view deals of community business owners
+                </p>
+                <p>
+                    <b>...a senior design project</b>
+                    that does something cool
+                </p>
+            </div>
+        </div>
+        <div class="fbox">
+            <img class="home-gfx" src="img/phones.png" />
 
-	<section id="contact">
-		<div class="fbox">
-			<form>
-				<h1>Questions?
-					<br>
-					<small>We'll get back to you ASAP</small>
-				</h1>
-				<fieldset>
-					<label for="name">Name:</label>
-					<input type="text" id="name" name="user_name">
+        </div>
+    </section>
 
-					<label for="mail">Email:</label>
-					<input type="email" id="mail" name="user_email">
+    <section id="temp-ad">
 
-					<label for="msg">Message:</label>
-					<textarea id="msg" name="msg" rows="4"></textarea>
-				</fieldset>
-				<button type="submit">Send Message</button>
-			</form>
-		</div>
-	</section>
+    </section>
 
-	<section id="login">
-		<div class="fbox">
-			<h1 class="tagline">Business Sign On</h1>
-			<form>
-				<fieldset>
-					<label for="name">Username:</label>
-					<input type="text" id="username" name="user_name">
+    <section id="settings">
+        <div class="fbox">
+            <h1 class="tagline">Change account settings</h1>
+            <form>
+                <fieldset>
+                        <label for="mail">Password:</label>
+                        <input type="password">
 
-					<label for="mail">Password:</label>
-					<input type="password" id="password" name="user_email">
-
-				</fieldset>
-				<button type="submit">Log In</button>
-			</form>
-			<a href="#" class="link">
-				<p>No account? Sign up your business with Geode!</p>
-				
-			</a>
-			<p>.</p>
-		</div>
-	</section>
+                        <label for="mail">New Password:</label>
+                        <input type="password">
+        
+                        <label for="mail">Confirm New Password:</label>
+                        <input type="password">
+                </fieldset>
+                <button type="submit">Update Account</button>
+            </form>
+        </div>
+    </section>
 </body>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
- crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
- crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
- crossorigin="anonymous"></script>
-<script src="scripts/nav.js"></script>
+    crossorigin="anonymous"></script>
+<script src="scripts/loginnav.js"></script>
 
 </html>

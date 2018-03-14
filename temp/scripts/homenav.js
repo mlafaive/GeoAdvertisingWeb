@@ -21,6 +21,20 @@ $(".nav_login").click(function () {
     updateNav(this);
 });
 
+$(".nav_logout").click(function () {
+    window.location.href = 'index.html';
+});
+
+$("#login-form").submit(function(event){
+    console.log(":)")
+    window.location.href = 'login.html';
+    event.preventDefault();
+})
+
+$(".IS_BAD_REMOVE").click(function () {
+    alert("Not working");
+})
+
 var updateNav = function (current) {
     for (let sect of nav_sections) {
         sect.removeClass("current_nav");
