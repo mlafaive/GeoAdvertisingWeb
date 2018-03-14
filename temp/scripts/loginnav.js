@@ -52,19 +52,21 @@ $(".nav_dash").click();
 var mixedChart = new Chart($("#ad-chart"), {
     type: 'bar',
     data: {
-      datasets: [{
+        datasets: [{
             label: 'Daily Interest',
             backgroundColor: ["#0be88166", "#ef577766", "#00d8d666", "#ff5e5766", "#575fcf66"],
-            pointHoverBackgroundColor: ["#0be881bb", "#ef5777bb", "#00d8d666", "#ff5e5766", "#575fcf66"],
+            hoverBackgroundColor: ["#0be881bb", "#ef5777bb", "#00d8d666", "#ff5e5766", "#575fcf66"],
             data: [25, 48, 41, 53, 72]
-          }, {
+        }, {
             label: 'Daily Sales',
             data: [21, 40, 35, 42, 54],
             backgroundColor: ["#ffdd59aa"],
             borderColor: ["#ffa801"],
             // Changes this dataset to become a line
             type: 'line'
-          }],
-      labels: ['3/10', '3/11', '3/12', '3/13', '3/14']
+        }],
+        labels: ['3/10', '3/11', '3/12', '3/13', '3/14']
+
     }
-  });
+
+});
