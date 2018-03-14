@@ -8,18 +8,17 @@
 .ad-thumbnail {
     margin: 1em;
     padding: 1em;
-    border-radius: 1em;
     border: 1px solid #d2dae2;
     transition: 0.5s all;
 }
 
-.ad-thumbnail:hover{
+.ad-thumbnail:hover {
     border: 1px solid var(--secondary);
     background-color: #f7f7f7;
 }
 
-.ad-thumbnail h3{
-    text-align:  center;
+.ad-thumbnail h3 {
+    text-align: center;
 }
 
 .t_title {
@@ -28,7 +27,7 @@
     padding: .1em .5em .1em .2em;
 }
 
-.ad-thumbnail tr{
+.ad-thumbnail tr {
     margin-top: .4em;
 }
 
@@ -40,21 +39,25 @@
     text-align: center;
     border: none;
 }
-.all-ads th, .all-ads td{
+
+.all-ads th, .all-ads td {
     padding: 1em;
     border-bottom: 1px solid #ddd;
 }
 
-.all-ads tr:hover{
-    background-color: #f7f7f7;
+.all-ads tr {
+    transition: 0.25s all;
+}
 
+.all-ads tr:hover {
+    background-color: #f7f7f7;
 }
 
 .t_des {
     word-wrap: break-word;
 }
 
-#ad-chart{
+#ad-chart {
     width: 50vw;
     min-width: 800px;
 }
@@ -64,8 +67,7 @@
 }
 
 .note-text {
-    padding: 1em;
-    border: 1px solid grey;
+    color: grey;
     margin: 1em;
 }
 
@@ -80,4 +82,6 @@
 
 .temp-ad tr, .temp-ad td {
     padding: 1em;
+    padding-bottom: 0;
+    font-size: 1em;
 }
