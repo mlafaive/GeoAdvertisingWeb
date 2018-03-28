@@ -17,7 +17,6 @@ $(".nav_settings").click(function () {
 });
 
 $(".nav_temp-ad").click(function () {
-    console.log("ad");
     hideSections($("#temp-ad"))
 });
 
@@ -55,8 +54,8 @@ var mixedChart = new Chart($("#ad-chart"), {
         datasets: [{
             label: 'Daily Interest',
             backgroundColor: ["#0be88166", "#ef577766", "#00d8d666", "#ff5e5766", "#575fcf66"],
-            hoverBackgroundColor: ["#0be881bb", "#ef5777bb", "#00d8d666", "#ff5e5766", "#575fcf66"],
-            data: [25, 48, 41, 53, 72]
+            hoverBackgroundColor: ["#0be881bb", "#ef5777bb", "#00d8d6bb", "#ff5e57bb", "#575fcfbb"],
+            data: [25, 48, 41, 53, 72],
         }, {
             label: 'Daily Sales',
             data: [21, 40, 35, 42, 54],
