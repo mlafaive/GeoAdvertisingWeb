@@ -16,9 +16,11 @@ $(".nav_settings").click(function () {
     updateNav(this);
 });
 
+/*
 $(".nav_temp-ad").click(function () {
     hideSections($("#temp-ad"))
 });
+*/
 
 $(".nav_logout").click(function () {
     window.location.href = 'index.html';

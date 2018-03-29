@@ -45,37 +45,20 @@
             <h1>Here are your current ads:</h1>
 
             <div class="ads">
-                <div class="ad-thumbnail nav_temp-ad">
-                    <h3>$2 off dozen donuts</h3>
+                <div v-if="current_ads" v-for="ad in current_ads" v-on:click="seeAd(ad.ID)" :id="ad.ID" class="ad-thumbnail nav_temp-ad">
+                    <h3>{{ad.title}}</h3>
                     <table>
                         <tr>
                             <td class="t_title">Start</td>
-                            <td>3/10/2018</td>
+                            <td>{{ad.start}}</td>
                         </tr>
                         <tr>
                             <td class="t_title">End</td>
-                            <td>3/20/2018</td>
+                            <td>{{ad.end}}</td>
                         </tr>
                         <tr>
                             <td class="t_title">Message</td>
-                            <td class="t_des">Treat the office with something special!</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="ad-thumbnail nav_temp-ad">
-                    <h3>Buy 3 pastries get the 4th free</h3>
-                    <table>
-                        <tr>
-                            <td class="t_title">Start</td>
-                            <td>3/1/2018</td>
-                        </tr>
-                        <tr>
-                            <td class="t_title">End</td>
-                            <td>3/31/2018</td>
-                        </tr>
-                        <tr>
-                            <td class="t_title">Message</td>
-                            <td class="t_des">March special: try our delicious pastries!</td>
+                            <td class="t_des">{{ad.message}}</td>
                         </tr>
                     </table>
                 </div>
@@ -240,8 +223,11 @@
     crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
     crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="http://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>
 
 <script src="scripts/loginnav.js"></script>
+
+<script src="scripts/ads.js"></script>
 
 </html>
