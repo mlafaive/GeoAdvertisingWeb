@@ -1,4 +1,4 @@
-var sections = [$("#dash"), $("#ads"), $("#settings"), $("#temp-ad")];
+var sections = [$("#dash"), $("#ads"), $("#settings"), $("#temp-ad"), $("#create-new")];
 var nav_sections = [$(".nav_dash"), $(".nav_ads"), $(".nav_settings"), $(".nav_logout"), $(".nav_temp-ad")];
 
 $(".nav_dash").click(function () {
@@ -22,6 +22,10 @@ $(".nav_temp-ad").click(function () {
 
 $(".nav_logout").click(function () {
     window.location.href = 'index.html';
+});
+
+$(".create-new-ad").click(function() {
+    hideSections($("#create-new"))
 });
 
 $(".IS_BAD_REMOVE").click(function () {

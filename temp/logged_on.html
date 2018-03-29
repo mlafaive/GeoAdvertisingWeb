@@ -38,6 +38,10 @@
             <h1 class="tagline">Hello
                 <span>Blue's Bakery</span>
             </h1>
+
+            <div class="create-new-ad ad-thumbnail side-by-side">
+                <h4>Create New Advertisement</h4>
+            </div>
             <h1>Here are your current ads:</h1>
 
             <div class="ads">
@@ -81,12 +85,12 @@
 
     <section id="ads">
         <div>
-            <div class="ad-thumbnail side-by-side">
+            <div class="create-new-ad ad-thumbnail side-by-side">
                 <h4>Create New</h4>
             </div>
 
             <h1>Current Advertisements</h1>
-            
+
             <table class="all-ads">
                 <tr>
                     <th>Title</th>
@@ -204,9 +208,18 @@
                     <label for="ad-name">Name:</label>
                     <input type="ad-name">
 
-                    <label for="ad-tagline">tagline:</label>
+                    <label for="ad-tagline">Tagline:</label>
                     <input type="ad-tagline">
-                    
+
+                    <label for="ad-start">Start Date:</label>
+                    <input type="date" name="start">
+
+                    <label for="ad-end">End Date:</label>
+                    <input type="date" name="end">
+
+                    <label for="ad-notes">Notes:</label>
+                    <textarea></textarea>
+
                     <!--
                         start
                         end
@@ -227,6 +240,8 @@
     crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
     crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
 <script src="scripts/loginnav.js"></script>
 
 </html>
