@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header v-if="email === null">
+        <header v-if="$store.state.email === null">
             <span class="logo">
                 <a href="/" class="nav_landing">Geode</a>
             </span>
@@ -43,11 +43,6 @@
 
 <script>
 export default {
-    props: {
-        email: {
-            default: localStorage.getItem("email")
-        }
-    }
 }
 </script>
 

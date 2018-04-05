@@ -4,37 +4,61 @@
 		<section id="signup">
 			<div class="fbox">
 				<h1 class="tagline">Business Sign Up</h1>
-				<form id="login-form" v-on:submit.prevent="signup">
+				<form id="login-form" v-on:submit.prevent="validate">
 					<fieldset>
 						<div v-if="error !== null" class="error">{{error}}</div>
 
 						<h1><small>Account Info</small></h1>
 
-						<label for="name">Name:</label>
-						<input type="text" id="name" v-model="name" required>
+						<p class="control">
+							<label for="name">Name:</label>
+							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('name') }" type="text" name="name" v-model="name">
+							<span v-show="errors.has('name')" class="help invalid">{{ errors.first('name') }}</span>
+						</p>
 
-						<label for="name">Email Address:</label>
-						<input type="text" id="email" v-model="email" required>
+						<p class="control">
+							<label for="email">Email Address:</label>
+							<input v-validate="'required|email|max:50'" :class="{'invalid': errors.has('email') }" type="text" name="email" v-model="email">
+							<span v-show="errors.has('email')" class="help invalid">{{ errors.first('email') }}</span>
+						</p>
 
-						<label for="mail">Password:</label>
-						<input type="password" id="password" v-model="password" required>
+						<p class="control">
+							<label for="password">Password:</label>
+							<input v-validate="'required|min:8|max:50'" :class="{'invalid': errors.has('password') }" type="password" name="password" v-model="password">
+							<span v-show="errors.has('password')" class="help invalid">{{ errors.first('password') }}</span>
+						</p>
 
-						<label for="mail">Confirm Password:</label>
-						<input type="password" id="confirm" v-model="confirm" required>
+						<p class="control">
+							<label for="confirm">Confirm Password:</label>
+							<input v-validate="'required|min:8|max:50|confirmed:password'" :class="{'invalid': errors.has('confirm') }" type="password" name="confirm" v-model="confirm">
+							<span v-show="errors.has('confirm')" class="help invalid">Passwords must match</span>
+						</p>
 
 						<h1 class="mt-1"><small>Business Info</small></h1>
 
-						<label for="name">Business Name:</label>
-						<input type="text" id="business-name" v-model="business" required>
+						<p class="control">
+							<label for="business-name">Business Name:</label>
+							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('business-name') }" type="text" name="business-name" v-model="business">
+							<span v-show="errors.has('business-name')" class="help invalid">{{ errors.first('business-name') }}</span>
+						</p>
 
-						<label for="mail">Street Address:</label>
-						<input type="text" id="address" v-model="address" required>
+						<p class="control">
+							<label for="address">Street Address:</label>
+							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('address') }" type="text" name="address" v-model="address">
+							<span v-show="errors.has('address')" class="help invalid">{{ errors.first('address') }}</span>
+						</p>
 
-						<label for="name">City:</label>
-						<input type="text" id="city" v-model="city" required>
+						<p class="control">
+							<label for="city">City:</label>
+							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('city') }" type="text" name="city" v-model="city">
+							<span v-show="errors.has('city')" class="help invalid">{{ errors.first('city') }}</span>
+						</p>
 
-						<label for="name">State:</label>
-						<input type="text" id="state" v-model="state" required>
+						<p class="control">
+							<label for="state">State:</label>
+							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('state') }" type="text" name="state" v-model="state">
+							<span v-show="errors.has('state')" class="help invalid">{{ errors.first('state') }}</span>
+						</p>
 
 					</fieldset>
 					<button type="submit">Sign Up</button>
@@ -69,6 +93,14 @@ export default {
 		}
 	},
 	methods: {
+		validate: function() {
+			this.$validator.validateAll()
+			.then((result) => {
+				if (result) this.signup()
+				else return
+			})
+			.catch(console.error)
+		},
 		signup: function() {
 			// Return if passwords don't match
 			if (this.password !== this.confirm) {
@@ -88,9 +120,9 @@ export default {
 			)
 			.then((data) => {
 				// Set local storage variables
-				localStorage.setItem("email", this.email)
-				localStorage.setItem("access_token", data.body.access_token)
-				localStorage.setItem("refresh_token", data.body.refresh_token)
+				this.$store.commit("email", this.email)
+				this.$store.commit("access_token", data.body.access_token)
+				this.$store.commit("refresh_token", data.body.refresh_token)
 
 				// Create the business on user create success
 				this.$http.post(
@@ -100,13 +132,11 @@ export default {
 						store_address: this.address,
 						city_name: this.city,
 						state_name: this.state
-					},
-					{
-						headers: {'Authorization': `Bearer ${localStorage.getItem('access_token')}`}
 					}
 				)
 				.then((data) => {
 					console.log(data)
+					window.location.href = "/"
 				})
 				.catch((err) => {
 					console.error("Error creating business.")
@@ -114,12 +144,10 @@ export default {
 					this.error = err.body.error
 
 					// attempt to delete the user
-					this.$http.delete(`users/${this.email}`, {headers: {'Authorization': `Bearer ${localStorage.getItem("access_token")}`}})
+					this.$http.delete(`users/${this.email}`)
 
 					// Remove local storage variables
-					localStorage.removeItem("email")
-					localStorage.removeItem("access_token")
-					localStorage.removeItem("refresh_token")
+					this.$store.commit("logout")
 				})
 			})
 			.catch((err) => {
@@ -132,4 +160,29 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss">
+p.control {
+	margin: 0 0 1em;
+	input {
+		background: #f3f3f3;
+		margin: 5px 0;
+		outline: none !important;
+    	border: 2px solid transparent;
+		border-radius: 2px;
+	}
+	input:focus {
+		border-color: var(--primary)
+	}
+	input.invalid {
+		border-color: var(--p-red);
+	}
+	span.help {
+		display: block;
+		font-size: 12px;
+		color: #333;
+	}
+	span.help.invalid {
+		color: var(--p-red);
+	}
+}
+</style>

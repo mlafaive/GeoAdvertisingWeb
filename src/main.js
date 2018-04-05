@@ -8,12 +8,44 @@ import AccountDashboard from './routes/account-dashboard.vue'
 import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 
-// Vue Resource: for http request wrappers
+// vue-resource: for http request wrappers
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
-Vue.http.options.root = 'http://localhost:3000/api/';
-Vue.http.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access-token")}`;
 
+// VeeValidate: for form input validation
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate)
+
+// Vuex: for reactive state
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+Vue.use(Vuex)
+const store = new Vuex.Store({
+    state: {
+        email: null,
+        access_token: null,
+        refresh_token: null
+    },
+    mutations: {
+        email(state, val) {
+            state.email = val
+        },
+        access_token(state, val) {
+            state.access_token = val
+        },
+        refresh_token(state, val) {
+            state.refresh_token = val
+        },
+        logout(state) {
+            state.email = null
+            state.access_token = null
+            state.refresh_token = null
+        }
+    },
+    plugins: [createPersistedState()]
+})
+
+// Reigster Routes
 const routes = {
   '': Index,
   '/about': About,
@@ -24,11 +56,12 @@ const routes = {
   '/account-dashboard': AccountDashboard
 }
 
-new Vue({
+var vm = new Vue({
   el: '#app',
   data: {
     currentRoute: window.location.pathname.replace(/\/$/, "")
   },
+  store, // registers Vuex store globally
   computed: {
     ViewComponent () {
       return routes[this.currentRoute] || NotFound
@@ -36,3 +69,7 @@ new Vue({
   },
   render (h) { return h(this.ViewComponent) }
 })
+
+// Set default $http options
+Vue.http.options.root = 'http://localhost:3000/api/';
+Vue.http.headers.common['Authorization'] = `Bearer ${vm.$store.state.access_token}`;

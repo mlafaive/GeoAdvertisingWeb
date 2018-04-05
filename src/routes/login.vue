@@ -50,9 +50,9 @@ export default {
 			)
 			.then((data) => {
 				// Save tokens and email locally
-				localStorage.setItem("email", this.email)
-				localStorage.setItem("access_token", data.body.access_token)
-				localStorage.setItem("refresh_token", data.body.refresh_token)
+				this.$store.commit("email", this.email)
+				this.$store.commit("access_token", data.body.access_token)
+				this.$store.commit("refresh_token", data.body.refresh_token)
 
 				// Redirect to Home
 				window.location.href = "/"

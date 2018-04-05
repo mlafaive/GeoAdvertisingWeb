@@ -3,10 +3,8 @@ export default {
     name: 'Logout',
     methods : {
         logout: function() {
-            // Delete local storage variables
-            localStorage.removeItem("email")
-            localStorage.removeItem("access_token")
-            localStorage.removeItem("refresh_token")
+            // Clear all Vuex variables
+            this.$store.commit("logout")
 
             // Send to home page
             window.location.href = "/"

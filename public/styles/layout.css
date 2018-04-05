@@ -18,6 +18,10 @@
     --s-blue: #0fbcf9;
     --p-red: #ff3f34;
     --s-red: #ff5e57;
+    --p-gray: #808e9b;
+    --s-gray: #d2dae2;
+    --p-black: #1e272e;
+    --s-black: #485460;
 }
 
 .side-by-side {
@@ -124,6 +128,10 @@ form button:hover {
 
 form button:active {
     background-color: var(--s-purple);
+}
+
+form button:disabled {
+    background-color: var(--p-gray);
 }
 
 input, textarea {
