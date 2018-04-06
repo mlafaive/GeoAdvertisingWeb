@@ -7,12 +7,13 @@ import Signup from './routes/signup.vue'
 import AccountDashboard from './routes/account-dashboard.vue'
 import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
+import Sandbox from './routes/sandbox.vue'
 
 // vue-bootstrap: for bootstrap components
 import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
 import './bootconf.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-Vue.use(BootstrapVue)
 
 // vue-resource: for http request wrappers
 import VueResource from 'vue-resource'
@@ -59,7 +60,8 @@ const routes = {
   '/login': Login,
   '/logout': Logout,
   '/signup': Signup,
-  '/account-dashboard': AccountDashboard
+  '/account-dashboard': AccountDashboard,
+  '/sandbox': Sandbox
 }
 
 var vm = new Vue({
