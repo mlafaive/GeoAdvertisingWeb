@@ -1,29 +1,30 @@
 <template>
-	<div>
+	<b-container>
 		<Header></Header>
-		<section id="landing">
-			<div class="fbox content">
+		<b-row>
+			<b-col cols='6' pull='' md='4' offset-md='1' order-md='1'>
+				<img class='img-fluid mb-4 mb-md-0' src="@/assets/placeholder.png" alt="" />
+			</b-col>
+			<b-col md='7'>
 				<h1>Geode</h1>
-				<h1 class="tagline">Find local gems</h1>
-				<p class="bigger-text">
-					A mobile application that sends you deals and sales for local businesses near you. Sign up to find relevant deals near you!</p>
-				<br>
-				<br>
-				<a href="#" class="nav_about">
-					<p>
+				<div class="display-4 text-success mb-4">Find local gems</div>
+				<p class="lead mb-5">
+					A mobile application that sends you deals and sales for local businesses near you. Sign up to find relevant deals near you!
+				</p>
+				<p class='mb-5'>
+					<a href="/about">
 						<b>Learn More</b>
-					</p>
-				</a>
-				<div class="badges">
-					<img class="badge" src="../assets/google-play-badge.svg" />
-					<img class="badge" src="../assets/black_app_store.svg" />
-				</div>
-			</div>
-			<div class="fbox">
-				<img class="home-gfx" src="../assets/placeholder.png" />
-			</div>
-		</section>
-	</div>
+					</a>
+				</p>
+				<b-row>
+					<b-col class="text-center">
+						<img src="@/assets/google-play-badge.svg" class="mr-4" />
+						<img src="@/assets/black_app_store.svg" />
+					</b-col>
+				</b-row>
+			</b-col>
+		</b-row>
+	</b-container>
 </template>
 
 <script>
@@ -36,5 +37,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped></style>
