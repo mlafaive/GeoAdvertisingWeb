@@ -8,6 +8,12 @@ import AccountDashboard from './routes/account-dashboard.vue'
 import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 
+// vue-bootstrap: for bootstrap components
+import BootstrapVue from 'bootstrap-vue'
+import './bootconf.scss'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+
 // vue-resource: for http request wrappers
 import VueResource from 'vue-resource'
 Vue.use(VueResource);

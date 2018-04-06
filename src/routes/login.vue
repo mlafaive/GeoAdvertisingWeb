@@ -55,7 +55,7 @@ export default {
 				this.$store.commit("refresh_token", data.body.refresh_token)
 
 				// Redirect to Home
-				window.location.href = "/"
+				// window.location.href = "/"
 			})
 			.catch((err) => {
 				console.error(err)
