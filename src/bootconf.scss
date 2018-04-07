@@ -1,3 +1,12 @@
+/* Mixins */
+@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+    -webkit-transition: $what $time $how;
+    -moz-transition:    $what $time $how;
+    -ms-transition:     $what $time $how;
+    -o-transition:      $what $time $how;
+    transition:         $what $time $how;
+}
+
 /* Custom styles */
 $white: #ffffff;
 $blue: #3867d6;
@@ -42,9 +51,31 @@ $theme-colors: (
     dark: $gray-dark
 ) !default;
 
+/* Additional font colors */
+.text-white {color: $white;}
+.text-blue {color: $blue;}
+.text-indigo {color: $indigo;}
+.text-purple {color: $purple;}
+.text-pink {color: $pink;}
+.text-red {color: $red;}
+.text-orange {color: $orange;}
+.text-yellow {color: $yellow;}
+.text-green {color: $green;}
+.text-teal {color: $teal;}
+.text-cyan {color: $cyan;}
+.text-gray-lighter {color: $gray-lighter;}
+.text-gray {color: $gray;}
+.text-gray-dark {color: $gray-dark;}
+.text-black {color: $black;}
+
+/* Additional typography */
+.font-weight-semilight {font-weight: 400 !important;}
+.font-weight-regular {font-weight: 500 !important;}
+.font-weight-semibold {font-weight: 600 !important;}
+
 /* Nav */
 span.logo {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-weight: 600;
 
     a {
@@ -57,12 +88,21 @@ ul.nav {
 
     li {
         display: inline-block;
-        margin-right: 1em;
+        margin-right: 2rem;
         &:last-child {margin-right: 0;}
 
         a {
-            color: $black;
+            @include transition(all, 75ms);
+            color: $gray-dark;
             text-decoration: none;
+            font-size: 1.2rem;
+            border-bottom: 2px solid transparent;
+
+            &:hover {
+                color: $black;
+                padding-bottom: .2rem;
+                border-color: $blue;
+            }
         }
     }
 }

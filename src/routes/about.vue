@@ -1,30 +1,37 @@
 <template>
-	<div>
+	<b-container>
 		<Header></Header>
-		<section id="about">
-			<div class="fbox">
-				<h1 class="tagline">Geode is a...</h1>
+		<b-row class='flex align-items-center'>
+			<b-col cols='6' pull='' md='4' offset-md='1' order-md='1'>
+				<img class='img-fluid mb-4 mb-md-0' src="@/assets/phones.png" alt="" />
+			</b-col>
+			<b-col md='7'>
+				<div class="mb-4 display-4 text-cyan">Geode is a...</div>
 				<div class="explanations">
-					<p>
-						<b>...advertising platform</b>
+					<h4 class='mb-4 ml-4 font-weight-light'>
+						<b class='text-blue'>...advertising platform</b>
 						that connects local business owners and consumers
-					</p>
-					<p>
-						<b>...mobile app</b>
+					</h4>
+					<h4 class='mb-4 ml-4 font-weight-light'>
+						<b class='text-indigo'>...mobile app</b>
 						that allows locals to view deals of community business owners
-					</p>
-					<p>
-						<b>...a senior design project</b>
+					</h4>
+					<h4 class='ml-4 font-weight-light'>
+						<b class='text-purple'>...a senior design project</b>
 						that does something cool
-					</p>
+					</h4>
 				</div>
-			</div>
-			<div class="fbox">
-				<img class="home-gfx" src="../assets/phones.png" />
-
-			</div>
-		</section>
-	</div>
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col>
+				<h1 class='mt-5 font-weight-light'>Want to learn more?</h1>
+				<p class='lead'>
+					[insert schpiel for local business owners. invite them to contact us to get their business account started]
+				</p>
+			</b-col>
+		</b-row>
+	</b-container>
 </template>
 
 <script>

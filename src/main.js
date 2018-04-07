@@ -79,5 +79,8 @@ var vm = new Vue({
 })
 
 // Set default $http options
-Vue.http.options.root = 'http://localhost:3000/api/';
-Vue.http.headers.common['Authorization'] = `Bearer ${vm.$store.state.access_token}`;
+Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api/';
+Vue.http.interceptors.push(function(request) {
+  // keep auth token up to date
+  request.headers.set('Authorization', `Bearer ${vm.$store.state.access_token}`);
+});

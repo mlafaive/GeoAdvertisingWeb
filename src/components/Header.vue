@@ -1,47 +1,38 @@
 <template>
     <header class='mb-5'>
-        <b-row v-if="$store.state.email === null">
-            <b-col cols='12' sm='6'>
+        <b-row class='d-flex align-items-center'>
+            <b-col cols='12' md='6' class='text-center text-md-left'>
                 <span class="logo">
-                    <a href="/" class="nav_landing text-success">geode</a>
+                    <a href="/" class="text-success">geode</a>
                 </span>
             </b-col>
-            <b-col cols='12' sm='6'>
-                <ul class="nav float-sm-right">
+            <b-col cols='12' md='6' class='text-center text-md-right'>
+                <ul v-if="$store.state.email === null" class="nav float-md-right">
                     <li>
-                        <a href="/" class="nav_landing">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/about" class="nav_about">About</a>
+                        <a href="/about">About</a>
                     </li>
                     <li>
-                        <a href="/contact" class="nav_contact">Contact</a>
+                        <a href="/contact">Contact</a>
                     </li>
                     <li>
-                        <a href="/login" class="nav_login">Log In</a>
+                        <a href="/login">Login</a>
                     </li>
                 </ul>
-            </b-col>
-        </b-row>
-        <b-row v-else>
-            <b-col cols='12' sm='6' class='align-middle'>
-                <span class="logo">
-                    <a href="/" class="nav_dash">Geode</a>
-                </span>
-            </b-col>
-            <b-col cols='12' sm='6' class='align-middle'>
-                <ul class='nav float-sm-right'>
+                <ul v-else class='nav float-sm-right'>
                     <li>
-                        <a href="/account-dashboard" class="nav_dash">Dashboard</a>
+                        <a href="/account-dashboard">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="nav_ads">Advertisements</a>
+                        <a href="#">Advertisements</a>
                     </li>
                     <li>
-                        <a href="#" class="nav_settings">Settings</a>
+                        <a href="#">Settings</a>
                     </li>
                     <li>
-                        <a href="/logout" class="nav_logout">Log Out</a>
+                        <a href="/logout">Log Out</a>
                     </li>
                 </ul>
             </b-col>

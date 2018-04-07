@@ -1,28 +1,33 @@
 <template>
-	<div>
+	<b-container>
 		<Header></Header>
-		<section id="contact">
-			<div class="fbox">
-				<form>
-					<h1>Questions?
-						<br>
-						<small>We'll get back to you ASAP</small>
-					</h1>
-					<fieldset>
-						<label for="name">Name:</label>
-						<input type="text" id="name" name="user_name">
+		<b-row>
+			<b-col class='text-center'>
+				<h1 class='font-weight-semilight text-teal'>Questions?</h1>
+				<h4 class='font-weight-light text-teal'>We'll get back to you <b>ASAP</b></h4>
 
-						<label for="mail">Email:</label>
-						<input type="email" id="mail" name="user_email">
+				<b-form class='mt-5'>
+					<b-form-row>
+						<b-col md='6' offset-md='3' xl='4' offset-xl='4'>
+							<b-form-group label="Name:" label-for="name">
+								<b-form-input type='text' id='name' required autofocus></b-form-input>
+							</b-form-group>
 
-						<label for="msg">Message:</label>
-						<textarea id="msg" name="msg" rows="4"></textarea>
-					</fieldset>
-					<button type="submit">Send Message</button>
-				</form>
-			</div>
-		</section>
-	</div>
+							<b-form-group label="Email Address:" label-for="email">
+								<b-form-input type='email' id='email' required></b-form-input>
+							</b-form-group>
+
+							<b-form-group label="Message:" label-for="message">
+								<b-form-textarea id='message' :rows='4' required></b-form-textarea>
+							</b-form-group>
+
+							<b-button type="submit" variant='info' block>Send Message</b-button>
+						</b-col>
+					</b-form-row>
+				</b-form>
+			</b-col>
+		</b-row>
+	</b-container>
 </template>
 
 <script>

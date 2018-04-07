@@ -6,7 +6,7 @@
 				<img class='img-fluid mb-4 mb-md-0' src="@/assets/placeholder.png" alt="" />
 			</b-col>
 			<b-col md='7'>
-				<h1>Geode</h1>
+				<!-- <h1 class="text-gray">geode</h1> -->
 				<div class="display-4 text-success mb-4">Find local gems</div>
 				<p class="lead mb-5">
 					A mobile application that sends you deals and sales for local businesses near you. Sign up to find relevant deals near you!

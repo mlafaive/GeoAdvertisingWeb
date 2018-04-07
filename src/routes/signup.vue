@@ -1,74 +1,46 @@
 <template>
-	<div>
+	<b-container>
 		<Header></Header>
-		<section id="signup">
-			<div class="fbox">
-				<h1 class="tagline">Business Sign Up</h1>
-				<form id="login-form" v-on:submit.prevent="validate">
-					<fieldset>
-						<div v-if="error !== null" class="error">{{error}}</div>
+		<b-row>
+			<b-col class='text-center'>
+				<h1 class='text-primary font-weight-light'>Account Sign Up</h1>
+				<b-form class='mt-4 mb-4' v-on:submit.prevent="validate">
+					<b-form-row>
+						<b-col md='6' offset-md='3' xl='4' offset-xl='4' class='text-center'>
+							<b-form-group label-for="name" label="Name:">
+								<b-form-input v-validate="'required|max:50'" :class="{'is-invalid': errors.has('name') }" type="text" name="name" v-model="name" autofocus></b-form-input>
+							</b-form-group>
 
-						<h1><small>Account Info</small></h1>
+							<b-form-group label-for="email" label="Email Address:">
+								<b-form-input v-validate="'required|email|max:50'" :class="{'is-invalid': errors.has('email') }" type="text" name="email" v-model="email"></b-form-input>
+								<span v-show="errors.has('email')" class="invalid-feedback">Email address must be valid</span>
+							</b-form-group>
 
-						<p class="control">
-							<label for="name">Name:</label>
-							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('name') }" type="text" name="name" v-model="name">
-							<span v-show="errors.has('name')" class="help invalid">{{ errors.first('name') }}</span>
-						</p>
+							<b-form-group label-for="password" label="Password:">
+								<b-form-input v-validate="'required|min:8|max:50'" :class="{'is-invalid': errors.has('password') }" type="password" name="password" v-model="password"></b-form-input>
+								<span v-show="errors.has('password')" class="invalid-feedback">{{errors.first("password")}}</span>
+							</b-form-group>
 
-						<p class="control">
-							<label for="email">Email Address:</label>
-							<input v-validate="'required|email|max:50'" :class="{'invalid': errors.has('email') }" type="text" name="email" v-model="email">
-							<span v-show="errors.has('email')" class="help invalid">{{ errors.first('email') }}</span>
-						</p>
+							<b-form-group label-for="confirm" label="Confirm Password:">
+								<b-form-input v-validate="'required|min:8|max:50|confirmed:password'" :class="{'is-invalid': errors.has('confirm') }" type="password" name="confirm" v-model="confirm"></b-form-input>
+								<span v-show="errors.has('confirm')" class="invalid-feedback">Passwords must match</span>
+							</b-form-group>
 
-						<p class="control">
-							<label for="password">Password:</label>
-							<input v-validate="'required|min:8|max:50'" :class="{'invalid': errors.has('password') }" type="password" name="password" v-model="password">
-							<span v-show="errors.has('password')" class="help invalid">{{ errors.first('password') }}</span>
-						</p>
+							<b-alert v-if="error !== null" class='mt-4' show variant="danger">
+								<b>Error:</b> {{error}}
+							</b-alert>
 
-						<p class="control">
-							<label for="confirm">Confirm Password:</label>
-							<input v-validate="'required|min:8|max:50|confirmed:password'" :class="{'invalid': errors.has('confirm') }" type="password" name="confirm" v-model="confirm">
-							<span v-show="errors.has('confirm')" class="help invalid">Passwords must match</span>
-						</p>
+							<b-button type="submit" variant="primary" class='mt-4 mb-4' block>Sign Up</b-button>
 
-						<h1 class="mt-1"><small>Business Info</small></h1>
-
-						<p class="control">
-							<label for="business-name">Business Name:</label>
-							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('business-name') }" type="text" name="business-name" v-model="business">
-							<span v-show="errors.has('business-name')" class="help invalid">{{ errors.first('business-name') }}</span>
-						</p>
-
-						<p class="control">
-							<label for="address">Street Address:</label>
-							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('address') }" type="text" name="address" v-model="address">
-							<span v-show="errors.has('address')" class="help invalid">{{ errors.first('address') }}</span>
-						</p>
-
-						<p class="control">
-							<label for="city">City:</label>
-							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('city') }" type="text" name="city" v-model="city">
-							<span v-show="errors.has('city')" class="help invalid">{{ errors.first('city') }}</span>
-						</p>
-
-						<p class="control">
-							<label for="state">State:</label>
-							<input v-validate="'required|max:50'" :class="{'invalid': errors.has('state') }" type="text" name="state" v-model="state">
-							<span v-show="errors.has('state')" class="help invalid">{{ errors.first('state') }}</span>
-						</p>
-
-					</fieldset>
-					<button type="submit">Sign Up</button>
-				</form>
-				<a href="/login" class="link">
-					<p>Already have an account? Log in to manage your business!</p>
-				</a>
-			</div>
-		</section>
-	</div>
+							<a href="/login">
+								<p>Already have an account? Login!</p>
+							</a>
+						</b-col>
+					</b-form-row>
+				</b-form>
+			</b-col>
+		</b-row>
+	</b-container>
 </template>
 
 <script>
@@ -97,17 +69,15 @@ export default {
 			this.$validator.validateAll()
 			.then((result) => {
 				if (result) this.signup()
-				else return
+				else {
+					// Autofocus the first error
+					var invalid = document.getElementsByClassName("is-invalid");
+					invalid[0].focus();
+				}
 			})
 			.catch(console.error)
 		},
 		signup: function() {
-			// Return if passwords don't match
-			if (this.password !== this.confirm) {
-				this.error = "Passwords do not match"
-				return
-			}
-
 			// Create the user
 			this.$http.post(
 				'users',
@@ -123,6 +93,9 @@ export default {
 				this.$store.commit("email", this.email)
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
+
+				// Check that store was updated
+				console.log(this.$store.state.access_token)
 
 				// Create the business on user create success
 				this.$http.post(
@@ -159,30 +132,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss">
-p.control {
-	margin: 0 0 1em;
-	input {
-		background: #f3f3f3;
-		margin: 5px 0;
-		outline: none !important;
-    	border: 2px solid transparent;
-		border-radius: 2px;
-	}
-	input:focus {
-		border-color: var(--primary)
-	}
-	input.invalid {
-		border-color: var(--p-red);
-	}
-	span.help {
-		display: block;
-		font-size: 12px;
-		color: #333;
-	}
-	span.help.invalid {
-		color: var(--p-red);
-	}
-}
-</style>
