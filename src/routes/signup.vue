@@ -94,37 +94,10 @@ export default {
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
 
-				// Check that store was updated
-				console.log(this.$store.state.access_token)
-
-				// Create the business on user create success
-				this.$http.post(
-					'businesses',
-					{
-						name: this.business,
-						store_address: this.address,
-						city_name: this.city,
-						state_name: this.state
-					}
-				)
-				.then((data) => {
-					console.log(data)
-					window.location.href = "/"
-				})
-				.catch((err) => {
-					console.error("Error creating business.")
-					console.error(err)
-					this.error = err.body.error
-
-					// attempt to delete the user
-					this.$http.delete(`users/${this.email}`)
-
-					// Remove local storage variables
-					this.$store.commit("logout")
-				})
+				// Send to dashboard
+				window.location.href = '/account-dashboard'
 			})
 			.catch((err) => {
-				console.error("Error creating user account.")
 				console.error(err)
 				this.error = err.body.error
 			})
