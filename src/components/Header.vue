@@ -3,36 +3,36 @@
         <b-row class='d-flex align-items-center'>
             <b-col cols='12' md='3' class='text-center text-md-left'>
                 <span class="logo">
-                    <a href="/" class="text-success">geode</a>
+                    <router-link to="/" class="text-success">geode</router-link>
                 </span>
             </b-col>
             <b-col cols='12' md='9' class='text-center'>
                 <ul v-if="$store.state.email === null" class="nav float-md-right">
                     <li>
-                        <a href="/">Home</a>
+                        <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                        <a href="/about">About</a>
+                        <router-link to="/about">About</router-link>
                     </li>
                     <li>
-                        <a href="/contact">Contact</a>
+                        <router-link to="/contact">Contact</router-link>
                     </li>
                     <li>
-                        <a href="/login">Login</a>
+                        <router-link to="/login">Login</router-link>
                     </li>
                 </ul>
                 <ul v-else class='nav float-md-right'>
                     <li>
-                        <a href="/account-dashboard">Dashboard</a>
+                        <router-link to="/account-dashboard">Dashboard</router-link>
                     </li>
                     <li>
-                        <a href="#">Advertisements</a>
+                        <router-link to="#">Advertisements</router-link>
                     </li>
                     <li>
-                        <a href="#">Settings</a>
+                        <router-link to="#">Settings</router-link>
                     </li>
                     <li>
-                        <a href="/logout">Log Out</a>
+                        <router-link to="/logout">Log Out</router-link>
                     </li>
                 </ul>
             </b-col>

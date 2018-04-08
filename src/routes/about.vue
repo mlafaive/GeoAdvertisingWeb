@@ -1,6 +1,5 @@
 <template>
-	<b-container>
-		<Header></Header>
+	<div>
 		<b-row class='flex align-items-center'>
 			<b-col cols='6' pull='' md='4' offset-md='1' order-md='1'>
 				<img class='img-fluid mb-4 mb-md-0' src="@/assets/phones.png" alt="" />
@@ -31,7 +30,7 @@
 				</p>
 			</b-col>
 		</b-row>
-	</b-container>
+	</div>
 </template>
 
 <script>

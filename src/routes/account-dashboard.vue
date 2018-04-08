@@ -1,9 +1,8 @@
 <template>
-	<b-container>
-		<Header></Header>
+	<b-row>
 		<div>Account Dashboard</div>
 		{{businesses}}
-	</b-container>
+	</b-row>
 </template>
 
 <script>

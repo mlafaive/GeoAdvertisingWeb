@@ -1,5 +1,5 @@
 <template>
-    <b-container>
+    <b-row>
         <b-jumbotron header="Welcome to the sandbox !~" class="mt-4"></b-jumbotron>
         <b-alert show variant="primary">Primary Alert</b-alert>
         <b-alert show variant="secondary">Secondary Alert</b-alert>
@@ -20,7 +20,7 @@
             <b-card bg-variant="light"></b-card>
             <b-card bg-variant="dark"></b-card>
         </b-card-group>
-    </b-container>
+    </b-row>
 </template>
 
 <script>

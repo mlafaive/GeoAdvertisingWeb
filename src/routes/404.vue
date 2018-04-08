@@ -1,5 +1,7 @@
 <template>
-	<div>Not Found</div>
+	<b-row>
+		<div>Not Found</div>
+	</b-row>
 </template>
 
 <script>

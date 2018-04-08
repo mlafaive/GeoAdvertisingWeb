@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import App from './app.vue'
 import Index from './routes/index.vue'
 import About from './routes/about.vue'
 import Contact from './routes/contact.vue'
@@ -52,31 +53,29 @@ const store = new Vuex.Store({
     plugins: [createPersistedState()]
 })
 
+// vue-router: for single-page routing
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
 // Reigster Routes
-const routes = {
-  '': Index,
-  '/about': About,
-  '/contact': Contact,
-  '/login': Login,
-  '/logout': Logout,
-  '/signup': Signup,
-  '/account-dashboard': AccountDashboard,
-  '/sandbox': Sandbox
-}
+const routes = [
+  {path: '/', component: Index},
+  {path: '/about', component: About},
+  {path: '/contact', component: Contact},
+  {path: '/login', component: Login},
+  {path: '/logout', component: Logout},
+  {path: '/signup', component: Signup},
+  {path: '/account-dashboard', component: AccountDashboard},
+  {path: '/sandboxcomponent', component: Sandbox}
+]
+
+const router = new VueRouter({routes})
 
 var vm = new Vue({
-  el: '#app',
-  data: {
-    currentRoute: window.location.pathname.replace(/\/$/, "")
-  },
-  store, // registers Vuex store globally
-  computed: {
-    ViewComponent () {
-      return routes[this.currentRoute] || NotFound
-    }
-  },
-  render (h) { return h(this.ViewComponent) }
-})
+  render: createEle => createEle(App),
+  router, // register VueRouter globally
+  store // registers Vuex store globally
+}).$mount("#app")
 
 // Set default $http options
 Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api/';

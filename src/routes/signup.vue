@@ -1,46 +1,43 @@
 <template>
-	<b-container>
-		<Header></Header>
-		<b-row>
-			<b-col class='text-center'>
-				<h1 class='text-primary font-weight-light'>Account Sign Up</h1>
-				<b-form class='mt-4 mb-4' v-on:submit.prevent="validate">
-					<b-form-row>
-						<b-col md='6' offset-md='3' xl='4' offset-xl='4' class='text-center'>
-							<b-form-group label-for="name" label="Name:">
-								<b-form-input v-validate="'required|max:50'" :class="{'is-invalid': errors.has('name') }" type="text" name="name" v-model="name" autofocus></b-form-input>
-							</b-form-group>
+	<b-row>
+		<b-col class='text-center'>
+			<h1 class='text-primary font-weight-light'>Account Sign Up</h1>
+			<b-form class='mt-4 mb-4' v-on:submit.prevent="validate">
+				<b-form-row>
+					<b-col md='6' offset-md='3' xl='4' offset-xl='4' class='text-center'>
+						<b-form-group label-for="name" label="Name:">
+							<b-form-input v-validate="'required|max:50'" :class="{'is-invalid': errors.has('name') }" type="text" name="name" v-model="name" autofocus></b-form-input>
+						</b-form-group>
 
-							<b-form-group label-for="email" label="Email Address:">
-								<b-form-input v-validate="'required|email|max:50'" :class="{'is-invalid': errors.has('email') }" type="text" name="email" v-model="email"></b-form-input>
-								<span v-show="errors.has('email')" class="invalid-feedback">Email address must be valid</span>
-							</b-form-group>
+						<b-form-group label-for="email" label="Email Address:">
+							<b-form-input v-validate="'required|email|max:50'" :class="{'is-invalid': errors.has('email') }" type="text" name="email" v-model="email"></b-form-input>
+							<span v-show="errors.has('email')" class="invalid-feedback">Email address must be valid</span>
+						</b-form-group>
 
-							<b-form-group label-for="password" label="Password:">
-								<b-form-input v-validate="'required|min:8|max:50'" :class="{'is-invalid': errors.has('password') }" type="password" name="password" v-model="password"></b-form-input>
-								<span v-show="errors.has('password')" class="invalid-feedback">{{errors.first("password")}}</span>
-							</b-form-group>
+						<b-form-group label-for="password" label="Password:">
+							<b-form-input v-validate="'required|min:8|max:50'" :class="{'is-invalid': errors.has('password') }" type="password" name="password" v-model="password"></b-form-input>
+							<span v-show="errors.has('password')" class="invalid-feedback">{{errors.first("password")}}</span>
+						</b-form-group>
 
-							<b-form-group label-for="confirm" label="Confirm Password:">
-								<b-form-input v-validate="'required|min:8|max:50|confirmed:password'" :class="{'is-invalid': errors.has('confirm') }" type="password" name="confirm" v-model="confirm"></b-form-input>
-								<span v-show="errors.has('confirm')" class="invalid-feedback">Passwords must match</span>
-							</b-form-group>
+						<b-form-group label-for="confirm" label="Confirm Password:">
+							<b-form-input v-validate="'required|min:8|max:50|confirmed:password'" :class="{'is-invalid': errors.has('confirm') }" type="password" name="confirm" v-model="confirm"></b-form-input>
+							<span v-show="errors.has('confirm')" class="invalid-feedback">Passwords must match</span>
+						</b-form-group>
 
-							<b-alert v-if="error !== null" class='mt-4' show variant="danger">
-								<b>Error:</b> {{error}}
-							</b-alert>
+						<b-alert v-if="error !== null" class='mt-4' show variant="danger">
+							<b>Error:</b> {{error}}
+						</b-alert>
 
-							<b-button type="submit" variant="primary" class='mt-4 mb-4' block>Sign Up</b-button>
+						<b-button type="submit" variant="primary" class='mt-4 mb-4' block>Sign Up</b-button>
 
-							<a href="/login">
-								<p>Already have an account? Login!</p>
-							</a>
-						</b-col>
-					</b-form-row>
-				</b-form>
-			</b-col>
-		</b-row>
-	</b-container>
+						<a href="/login">
+							<p>Already have an account? Login!</p>
+						</a>
+					</b-col>
+				</b-form-row>
+			</b-form>
+		</b-col>
+	</b-row>
 </template>
 
 <script>
