@@ -1,12 +1,12 @@
 <template>
     <header class='mb-5'>
         <b-row class='d-flex align-items-center'>
-            <b-col cols='12' md='6' class='text-center text-md-left'>
+            <b-col cols='12' md='3' class='text-center text-md-left'>
                 <span class="logo">
                     <a href="/" class="text-success">geode</a>
                 </span>
             </b-col>
-            <b-col cols='12' md='6' class='text-center text-md-right'>
+            <b-col cols='12' md='9' class='text-center'>
                 <ul v-if="$store.state.email === null" class="nav float-md-right">
                     <li>
                         <a href="/">Home</a>
@@ -21,7 +21,7 @@
                         <a href="/login">Login</a>
                     </li>
                 </ul>
-                <ul v-else class='nav float-sm-right'>
+                <ul v-else class='nav float-md-right'>
                     <li>
                         <a href="/account-dashboard">Dashboard</a>
                     </li>

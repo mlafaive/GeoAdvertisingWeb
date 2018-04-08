@@ -1,9 +1,9 @@
 <template>
-	<div>
+	<b-container>
 		<Header></Header>
 		<div>Account Dashboard</div>
 		{{businesses}}
-	</div>
+	</b-container>
 </template>
 
 <script>
@@ -21,7 +21,8 @@ export default {
 	},
 	methods: {
 		getBusinesses: function() {
-			this.$http.get(`users/${this.$store.state.email}/businesses`)
+			var url = `users/${this.$store.state.email}/businesses`
+			this.$http.get(url)
 			.then((data) => {
 				this.businesses = data.body.businesses
 			})
