@@ -19,7 +19,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // vue-resource: for http request wrappers
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
-Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api/';
+Vue.http.options.root = 'http://localhost:3000/api/';
 
 // VeeValidate: for form input validation
 import VeeValidate from 'vee-validate'
@@ -73,87 +73,35 @@ const routes = [
 
 const router = new VueRouter({routes})
 
-// Import _http helper as a new plugin
-//import _http from './_http.vue'
-const plugin = {
-  install(Vue) {
-    Vue.mixin({
-      methods: {
-        request: function (type, endpoint, body) {
-          type = type.toLowerCase()
-
-          var promise
-          switch (type) {
-            case 'get':
-              promise = Vue.http.get(endpoint)
-              break;
-            case 'post':
-              func = Vue.http.post(endpoint, body)
-              break;
-            case 'delete':
-              func = Vue.http.delete(endpoint)
-              break;
-            case 'patch':
-              func = Vue.http.patch(endpoint, body)
-              break;
-            default:
-              throw new Error('invalid request type')
-          }
-
-          if (promise) {
-            console.log(promise)
-            return promise.catch((err) => {
-              console.error(err)
-
-              // if the error is something other than an auth error, return the error
-              if (err.status !== 401) {
-                if (err.body.msg)
-                  return err.body.msg
-                else if (err.body.error)
-                  return err.body.error
-              }
-              // if auth error and refresh token exists, get a new access token
-              if (err.body.msg && store.state.refresh_token) {
-                console.log(store.state.refresh_token)
-                // Set access token
-                Vue.http.post(
-                  'refresh',
-                  {},
-                  {headers: {'Authorization': `Bearer ${store.state.refresh_token}`}}
-                )
-                .then((data) => {
-                  store.commit('access_token', data.body.access_token)
-                  console.log('refreshed access token!')
-                })
-                .then(() => {
-                  // retry the original request
-                  return promise
-                })
-                .catch((err) => {
-                  console.log("could not refresh access_token:")
-                  console.error(err)
-                })
-              }
-            })
-          }
-        }
-      }
-    })
-  }
-}
-Vue.use(plugin)
-
 new Vue({
   render: createEle => createEle(App),
   router, // register VueRouter globally
   store, // registers Vuex store globally
   beforeMount() {
     // Set default $http options
-    Vue.http.interceptors.push(function(request) {
+    Vue.http.interceptors.push(function(request, next) {
+      console.log(request)
+
       // keep auth token up to date
       if(!request.headers.get("Authorization")) {
         request.headers.set('Authorization', `Bearer ${store.state.access_token}`);
       }
-    });
+
+      return (response) => {
+        if (response.status === 401) {
+          return Vue.http.post('refresh', {}, {headers: {'Authorization': `Bearer ${store.state.refresh_token}`}})
+          .then((data) => {
+            store.commit("access_token", data.body.access_token)
+            console.log("refreshed access token")
+            // retry the original request
+            return Vue.http[request.method.toLowerCase()](request.url, request.body)
+          })
+          .catch((err) => {
+            console.log("could not refresh access token:")
+            console.log(err)
+          })
+        }
+      }
+    })
   }
 }).$mount("#app")

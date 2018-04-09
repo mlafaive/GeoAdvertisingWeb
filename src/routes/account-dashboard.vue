@@ -25,11 +25,15 @@ export default {
 	methods: {
 		getBusinesses: function() {
 			var url = `users/${this.$store.state.email}/businesses`;
-			this.request('get', url)
+			this.$http.get(url)
 			.then((data) => {
+				console.log("made it")
 				this.businesses = data.body.businesses
 			})
-			.catch(console.error)
+			.catch((err) => {
+				console.log("err")
+				console.error(err)
+			})
 		}
 	},
 	mounted() {
