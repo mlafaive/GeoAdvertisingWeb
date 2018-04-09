@@ -1,27 +1,31 @@
 <template>
-	<b-row>
-		<div>Account Dashboard</div>
+	<div>
+		<BusinessDashboard v-if="businesses === null || businesses.length"></BusinessDashboard>
+		<NewBusinessDashboard v-else></NewBusinessDashboard>
 		{{businesses}}
-	</b-row>
+	</div>
 </template>
 
 <script>
 import Header from '../components/Header.vue'
+import NewBusinessDashboard from '../components/new-business-dashboard.vue'
+import BusinessDashboard from '../components/business-dashboard.vue'
 
 export default {
-	name: 'AccountDashboard',
 	components: {
-		Header
+		Header,
+		NewBusinessDashboard,
+		BusinessDashboard
 	},
 	data: function() {
 		return {
-			businesses: []
+			businesses: null,
 		}
 	},
 	methods: {
 		getBusinesses: function() {
-			var url = `users/${this.$store.state.email}/businesses`
-			this.$http.get(url)
+			var url = `users/${this.$store.state.email}/businesses`;
+			this.request('get', url)
 			.then((data) => {
 				this.businesses = data.body.businesses
 			})
@@ -33,5 +37,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped></style>

@@ -14,9 +14,9 @@
 				</b-form-group>
 				<b-button block type="submit" variant='primary'>Log In</b-button>
 			</b-form>
-			<a href="/signup" class="link">
+			<router-link to="/signup" class="link">
 				<p>No account? Sign up your business with Geode!</p>
-			</a>
+			</router-link>
 		</b-col>
 	</b-row>
 </template>
@@ -37,7 +37,7 @@ export default {
 		}
 	},
 	methods: {
-		login: function(event) {
+		login: function() {
 			this.$http.post(
 				'login',
 				{
@@ -52,7 +52,7 @@ export default {
 				this.$store.commit("refresh_token", data.body.refresh_token)
 
 				// Redirect to Home
-				window.location.href = "/account-dashboard"
+				this.$router.push({path: '/account-dashboard'})
 			})
 			.catch((err) => {
 				console.error(err)

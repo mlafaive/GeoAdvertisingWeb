@@ -30,9 +30,9 @@
 
 						<b-button type="submit" variant="primary" class='mt-4 mb-4' block>Sign Up</b-button>
 
-						<a href="/login">
+						<router-link to="/login">
 							<p>Already have an account? Login!</p>
-						</a>
+						</router-link>
 					</b-col>
 				</b-form-row>
 			</b-form>

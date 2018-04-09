@@ -1,38 +1,38 @@
 <template>
-    <header class='mb-5'>
+    <header class='mt-5 mb-5'>
         <b-row class='d-flex align-items-center'>
             <b-col cols='12' md='3' class='text-center text-md-left'>
                 <span class="logo">
-                    <router-link to="/" class="text-success">geode</router-link>
+                    <router-link exact to="/" class="text-success">geode</router-link>
                 </span>
             </b-col>
             <b-col cols='12' md='9' class='text-center'>
                 <ul v-if="$store.state.email === null" class="nav float-md-right">
                     <li>
-                        <router-link to="/">Home</router-link>
+                        <router-link exact to="/">Home</router-link>
                     </li>
                     <li>
-                        <router-link to="/about">About</router-link>
+                        <router-link exact to="/about">About</router-link>
                     </li>
                     <li>
-                        <router-link to="/contact">Contact</router-link>
+                        <router-link exact to="/contact">Contact</router-link>
                     </li>
                     <li>
-                        <router-link to="/login">Login</router-link>
+                        <router-link exact to="/login">Login</router-link>
                     </li>
                 </ul>
                 <ul v-else class='nav float-md-right'>
                     <li>
-                        <router-link to="/account-dashboard">Dashboard</router-link>
+                        <router-link exact to="/account-dashboard">Dashboard</router-link>
                     </li>
                     <li>
-                        <router-link to="#">Advertisements</router-link>
+                        <router-link exact to="#">Advertisements</router-link>
                     </li>
                     <li>
-                        <router-link to="#">Settings</router-link>
+                        <router-link exact to="#">Settings</router-link>
                     </li>
                     <li>
-                        <router-link to="/logout">Log Out</router-link>
+                        <router-link exact to="/logout">Log Out</router-link>
                     </li>
                 </ul>
             </b-col>

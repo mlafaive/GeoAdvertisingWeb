@@ -24,7 +24,7 @@
 		</b-row>
 		<b-row>
 			<b-col>
-				<h1 class='mt-5 font-weight-light'>Want to learn more?</h1>
+				<h2 class='mt-5 font-weight-light'>Want to learn more?</h2>
 				<p class='lead'>
 					[insert schpiel for local business owners. invite them to contact us to get their business account started]
 				</p>
