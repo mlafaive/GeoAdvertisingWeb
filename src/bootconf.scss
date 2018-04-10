@@ -100,11 +100,11 @@ ul.nav {
 
             &:hover, &.router-link-active {
                 padding-bottom: .2rem;
-                border-color: $blue;
+                border-color: $gray-lighter;
             }
 
             &.router-link-active {
-              border-color: $pink;
+              border-color: $blue;
             }
         }
     }

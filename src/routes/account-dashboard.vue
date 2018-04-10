@@ -27,11 +27,9 @@ export default {
 			var url = `users/${this.$store.state.email}/businesses`;
 			this.$http.get(url)
 			.then((data) => {
-				console.log("made it")
 				this.businesses = data.body.businesses
 			})
 			.catch((err) => {
-				console.log("err")
 				console.error(err)
 			})
 		}

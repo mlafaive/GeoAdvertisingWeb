@@ -7,7 +7,7 @@ export default {
             this.$store.commit("logout")
 
             // Send to home page
-            window.location.href = "/"
+            this.$router.push({path: '/'})
         }
     },
     beforeMount() {this.logout()}
