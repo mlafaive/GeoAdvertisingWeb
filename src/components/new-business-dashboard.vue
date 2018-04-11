@@ -9,13 +9,14 @@
       </b-col>
     </b-row>
     <h3 class='font-weight-light mb-4'>Create a business</h3>
-    <BusinessCreate></BusinessCreate>
+    <BusinessCreate :getBusinesses='getBusinesses'></BusinessCreate>
   </div>
 </template>
 
 <script>
   import BusinessCreate from './business-create.vue'
   export default {
+    props: ['getBusinesses'],
     components: {BusinessCreate}
   }
 </script>

@@ -26,10 +26,7 @@
                         <router-link exact to="/account-dashboard">Dashboard</router-link>
                     </li>
                     <li>
-                        <router-link exact to="#">Advertisements</router-link>
-                    </li>
-                    <li>
-                        <router-link exact to="#">Settings</router-link>
+                        <router-link exact to="/account-settings">Account Settings</router-link>
                     </li>
                     <li>
                         <router-link exact to="/logout">Log Out</router-link>

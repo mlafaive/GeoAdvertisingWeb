@@ -6,6 +6,7 @@ import Contact from './routes/contact.vue'
 import Login from './routes/login.vue'
 import Signup from './routes/signup.vue'
 import AccountDashboard from './routes/account-dashboard.vue'
+import AccountSettings from './routes/account-settings.vue'
 import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 import Sandbox from './routes/sandbox.vue'
@@ -67,6 +68,7 @@ const routes = [
   {path: '/logout', component: Logout},
   {path: '/signup', component: Signup},
   {path: '/account-dashboard', component: AccountDashboard},
+  {path: '/account-settings', component: AccountSettings},
   {path: '/sandboxcomponent', component: Sandbox},
   {path: '*', component: NotFound}
 ]
