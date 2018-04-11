@@ -43,8 +43,7 @@
         <b-form-row>
           <b-col>
             <b-button type="submit" variant='primary' class='mt-2'>
-              <i class='fa fa-plus mr-1'></i>
-              Create Business
+              + Create Business
             </b-button>
           </b-col>
         </b-form-row>
