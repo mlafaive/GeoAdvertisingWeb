@@ -20,7 +20,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // vue-resource: for http request wrappers
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
-Vue.http.options.root = 'http://geo-advertising.herokuapp.com/api/';
+Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api';
 
 // VeeValidate: for form input validation
 import VeeValidate from 'vee-validate'
