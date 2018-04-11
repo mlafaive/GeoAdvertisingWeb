@@ -1,7 +1,7 @@
 <template>
   <b-row class='flex align-items-center'>
     <b-col md='6'>
-      <b-form v-on:submit.prevent='create'>
+      <b-form v-on:submit.prevent='create' id="createBusiness">
 
         <b-form-row>
           <b-col>
@@ -58,6 +58,7 @@
 
 <script>
   export default {
+    props: ['getBusinesses'],
     data() {
       return {
         error: null,
@@ -80,6 +81,10 @@
         )
         .then((data) => {
           console.log(data)
+          // Refresh the businesses
+          this.getBusinesses()
+          // Clear the form
+          document.getElementById("createBusiness").reset()
         })
         .catch((err) => {
           console.log(err)

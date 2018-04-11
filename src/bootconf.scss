@@ -110,5 +110,16 @@ ul.nav {
     }
 }
 
+/* Business Dashboard */
+.business-card {
+  cursor: pointer;
+  @include transition(all, 100ms);
+  &:hover {
+    border-color: $gray;
+    background: #f3f3f3f3;
+    opacity: .90;
+  }
+}
+
 /* Bootstrap import */
 @import '~bootstrap/scss/bootstrap.scss'
