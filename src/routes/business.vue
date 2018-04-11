@@ -5,6 +5,7 @@
 		<NewBusinessDashboard v-else></NewBusinessDashboard>
 		{{businesses}} what is this
         -->
+    <BusinessNav></BusinessNav>
 	</div>
 </template>
 
@@ -17,8 +18,7 @@ import BusinessDashboard from "../components/business-dashboard.vue";
 
 export default {
   components: {
-    BusinessNav,
-    BusinessDashboard
+    BusinessNav
   },
   data: function() {
     return {
@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     getActive: function() {
+      console.log(this.$route.params);
         /*
       var url = `users/${this.$store.state.email}/businesses`;
       this.$http

@@ -10,6 +10,7 @@ import AccountSettings from './routes/account-settings.vue'
 import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 import Sandbox from './routes/sandbox.vue'
+import Business from './routes/business.vue'
 
 // vue-bootstrap: for bootstrap components
 import BootstrapVue from 'bootstrap-vue'
@@ -31,28 +32,28 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 const store = new Vuex.Store({
-    state: {
-        email: null,
-        access_token: null,
-        refresh_token: null
+  state: {
+    email: null,
+    access_token: null,
+    refresh_token: null
+  },
+  mutations: {
+    email(state, val) {
+      state.email = val
     },
-    mutations: {
-        email(state, val) {
-            state.email = val
-        },
-        access_token(state, val) {
-            state.access_token = val
-        },
-        refresh_token(state, val) {
-            state.refresh_token = val
-        },
-        logout(state) {
-            state.email = null
-            state.access_token = null
-            state.refresh_token = null
-        }
+    access_token(state, val) {
+      state.access_token = val
     },
-    plugins: [createPersistedState()]
+    refresh_token(state, val) {
+      state.refresh_token = val
+    },
+    logout(state) {
+      state.email = null
+      state.access_token = null
+      state.refresh_token = null
+    }
+  },
+  plugins: [createPersistedState()]
 })
 
 // vue-router: for single-page routing
@@ -61,19 +62,20 @@ Vue.use(VueRouter)
 
 // Register Routes
 const routes = [
-  {path: '/', component: Index},
-  {path: '/about', component: About},
-  {path: '/contact', component: Contact},
-  {path: '/login', component: Login},
-  {path: '/logout', component: Logout},
-  {path: '/signup', component: Signup},
-  {path: '/account-dashboard', component: AccountDashboard},
-  {path: '/account-settings', component: AccountSettings},
-  {path: '/sandboxcomponent', component: Sandbox},
-  {path: '*', component: NotFound}
+  { path: '/', component: Index },
+  { path: '/about', component: About },
+  { path: '/contact', component: Contact },
+  { path: '/login', component: Login },
+  { path: '/logout', component: Logout },
+  { path: '/signup', component: Signup },
+  { path: '/account-dashboard', component: AccountDashboard },
+  { path: '/account-settings', component: AccountSettings },
+  { path: '/sandboxcomponent', component: Sandbox },
+  { path: '/business/:id', name: "business", component: Business },
+  { path: '*', component: NotFound }
 ]
 
-const router = new VueRouter({routes})
+const router = new VueRouter({ routes })
 
 new Vue({
   render: createEle => createEle(App),
@@ -81,27 +83,27 @@ new Vue({
   store, // registers Vuex store globally
   beforeMount() {
     // Set default $http options
-    Vue.http.interceptors.push(function(request, next) {
+    Vue.http.interceptors.push(function (request, next) {
       console.log(request)
 
       // keep auth token up to date
-      if(!request.headers.get("Authorization")) {
+      if (!request.headers.get("Authorization")) {
         request.headers.set('Authorization', `Bearer ${store.state.access_token}`);
       }
 
       return (response) => {
         if (response.status === 401) {
-          return Vue.http.post('refresh', {}, {headers: {'Authorization': `Bearer ${store.state.refresh_token}`}})
-          .then((data) => {
-            store.commit("access_token", data.body.access_token)
-            console.log("refreshed access token")
-            // retry the original request
-            return Vue.http[request.method.toLowerCase()](request.url, request.body)
-          })
-          .catch((err) => {
-            console.log("could not refresh access token:")
-            console.log(err)
-          })
+          return Vue.http.post('refresh', {}, { headers: { 'Authorization': `Bearer ${store.state.refresh_token}` } })
+            .then((data) => {
+              store.commit("access_token", data.body.access_token)
+              console.log("refreshed access token")
+              // retry the original request
+              return Vue.http[request.method.toLowerCase()](request.url, request.body)
+            })
+            .catch((err) => {
+              console.log("could not refresh access token:")
+              console.log(err)
+            })
         }
       }
     })
