@@ -51,6 +51,9 @@ export default {
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
 
+				// Get acocunt businesses
+				this.$store.commit("getBusinesses")
+
 				// Redirect to Home
 				this.$router.push({path: '/account-dashboard'})
 			})

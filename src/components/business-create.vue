@@ -58,7 +58,6 @@
 
 <script>
   export default {
-    props: ['getBusinesses'],
     data() {
       return {
         error: null,
@@ -82,7 +81,7 @@
         .then((data) => {
           console.log(data)
           // Refresh the businesses
-          this.getBusinesses()
+          this.$store.commit('getBusinesses')
           // Clear the form
           document.getElementById("createBusiness").reset()
         })

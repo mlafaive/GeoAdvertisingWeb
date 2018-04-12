@@ -21,13 +21,13 @@
     <b-row>
       <b-col class='mt-4 mb-4'>
         <b-collapse id="createForm">
-          <BusinessCreate :getBusinesses='getBusinesses' class='p-4 m-0 border border-primary rounded'></BusinessCreate>
+          <BusinessCreate class='p-4 m-0 border border-primary rounded'></BusinessCreate>
         </b-collapse>
       </b-col>
     </b-row>
 
     <b-row>
-        <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='business in businesses' :key='business.id'>
+        <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='business in $store.state.businesses' :key='business.id'>
           <BusinessCard :business='business'></BusinessCard>
         </b-col>
     </b-row>
@@ -38,7 +38,6 @@
   import BusinessCreate from './business-create.vue'
   import BusinessCard from './business-card.vue'
   export default {
-    props: ['businesses', 'getBusinesses'],
     components: {BusinessCreate, BusinessCard},
     data: function() {
       return {

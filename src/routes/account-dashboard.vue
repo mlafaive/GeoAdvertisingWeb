@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<BusinessDashboard :businesses="businesses" :getBusinesses='getBusinesses' v-if="businesses === null || businesses.length"></BusinessDashboard>
-		<NewBusinessDashboard :getBusinesses='getBusinesses' v-else></NewBusinessDashboard>
+		<BusinessDashboard v-if="$store.state.businesses === null || $store.state.businesses.length"></BusinessDashboard>
+		<NewBusinessDashboard v-else></NewBusinessDashboard>
 	</div>
 </template>
 
@@ -16,25 +16,5 @@ export default {
 		NewBusinessDashboard,
 		BusinessDashboard
 	},
-	data: function() {
-		return {
-			businesses: null,
-		}
-	},
-	methods: {
-		getBusinesses: function() {
-			var url = `users/${this.$store.state.email}/businesses`;
-			this.$http.get(url)
-			.then((data) => {
-				this.businesses = data.body.businesses
-			})
-			.catch((err) => {
-				console.error(err)
-			})
-		}
-	},
-	mounted() {
-		this.getBusinesses()
-	}
 }
 </script>

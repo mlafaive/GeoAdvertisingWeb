@@ -34,7 +34,8 @@ const store = new Vuex.Store({
     state: {
         email: null,
         access_token: null,
-        refresh_token: null
+        refresh_token: null,
+        businesses: null,
     },
     mutations: {
         email(state, val) {
@@ -47,9 +48,17 @@ const store = new Vuex.Store({
             state.refresh_token = val
         },
         logout(state) {
-            state.email = null
-            state.access_token = null
-            state.refresh_token = null
+            Object.keys(state).forEach(key => state[key] = null)
+        },
+        getBusinesses(state) {
+            var url = `users/${state.email}/businesses`;
+			Vue.http.get(url)
+			.then((data) => {
+				state.businesses = data.body.businesses
+			})
+			.catch((err) => {
+				console.error(err)
+			})
         }
     },
     plugins: [createPersistedState()]
@@ -81,7 +90,7 @@ new Vue({
   store, // registers Vuex store globally
   beforeMount() {
     // Set default $http options
-    Vue.http.interceptors.push(function(request, next) {
+    Vue.http.interceptors.push(function(request) {
       console.log(request)
 
       // keep auth token up to date

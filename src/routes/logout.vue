@@ -1,3 +1,7 @@
+<template>
+    <h1 class='text-warning display-4'>Redirecting...</h1>
+</template>
+
 <script>
 export default {
     name: 'Logout',
