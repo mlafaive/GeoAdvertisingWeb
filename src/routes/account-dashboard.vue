@@ -2,7 +2,6 @@
 	<div>
 		<BusinessDashboard :businesses="businesses" :getBusinesses='getBusinesses' v-if="businesses === null || businesses.length"></BusinessDashboard>
 		<NewBusinessDashboard :getBusinesses='getBusinesses' v-else></NewBusinessDashboard>
-		{{businesses}}
 	</div>
 </template>
 

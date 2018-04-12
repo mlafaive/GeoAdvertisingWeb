@@ -28,19 +28,7 @@
 
     <b-row>
         <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='business in businesses' :key='business.id'>
-            <b-card class='business-card' img-src="https://lorempixel.com/600/300/" img-top no-body>
-              <b-card-body class='text-center'>
-                <h2 class='font-weight-light mb-4'>{{business.name}}</h2>
-                <p class='lead mb-0' style='font-size: 1rem'>
-                  {{business.store_address}}<br>
-                  {{business.city.city_name}}, {{business.city.state_name}}
-                </p>
-              </b-card-body>
-              <b-card-footer class='text-center pb-2 pt-2'>
-                <b-badge variant='danger' v-if='activeOffers(business)'>{{activeOffers(business)}} Active Offers</b-badge>
-                <b-badge variant='dark' class='ml-2'>{{scheduledOffers(business)}} Scheduled Offers</b-badge>
-              </b-card-footer>
-            </b-card>
+          <BusinessCard :business='business'></BusinessCard>
         </b-col>
     </b-row>
   </div>
@@ -48,8 +36,10 @@
 
 <script>
   import BusinessCreate from './business-create.vue'
+  import BusinessCard from './business-card.vue'
   export default {
     props: ['businesses', 'getBusinesses'],
+    components: {BusinessCreate, BusinessCard},
     data: function() {
       return {
         addText: '+ Add Business',
@@ -61,22 +51,6 @@
       toggleCreateBtn: function() {
         this.btnText = (this.btnText === this.addText) ? this.hideText : this.addText
       },
-      activeOffers: function(business) {
-        let now = new Date()
-        return business.offers.filter((offer) => {
-          let start = new Date(offer.start_time)
-          let end = new Date(offer.end_time)
-          return start <= now && now <= end
-        }).length
-      },
-      scheduledOffers: function(business) {
-        let now = new Date()
-        return business.offers.filter((offer) => {
-          let start = new Date(offer.start_time)
-          return now < start
-        }).length
-      }
     },
-    components: {BusinessCreate}
   }
 </script>
