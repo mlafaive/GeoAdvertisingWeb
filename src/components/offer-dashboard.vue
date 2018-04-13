@@ -11,7 +11,7 @@
 
     <b-row>
         <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='offer in offers' :key='offer.id'>
-          <router-link exact :to="{ name: 'business', params: { id: offer.id } }"> 
+          <router-link exact :to="{ name: 'business-offer', params: { id: business_id, oid: offer.id } }"> 
             <b-card class='offer-card' no-body>
               <b-card-body class='text-center'>
                 <h2 class='font-weight-light mb-4'>{{offer.description}}</h2>

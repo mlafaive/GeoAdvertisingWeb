@@ -1,7 +1,7 @@
 <template>
 	<div>
     <h1>Offers</h1>
-    <b-table hover :items="offers" :fields="ad_fields"></b-table>
+    <b-table hover :items="offers" :fields="ad_fields" @row-clicked="clicked"></b-table>
 	</div>
 </template>
 
@@ -34,6 +34,11 @@ export default {
   methods: { 
     formatDate: function(value){
       return moment(String(value)).format('MM/DD/YYYY [at] h:mm:ss a')
+    },
+    clicked: function(item){
+      var id = item.id
+      this.$router.push({ name: 'business-offer', params: { id: this.business_id, oid: id }})
+      
     },
     getOffers: function() {
       var url = `businesses/${this.business_id}/offers`;
