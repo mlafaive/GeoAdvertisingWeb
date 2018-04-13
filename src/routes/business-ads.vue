@@ -1,18 +1,12 @@
 <template>
 	<div>
-    <BusinessNav></BusinessNav>
-    <BusinessAds></BusinessAds>
+    <h1>some sweet biz ads</h1>
 	</div>
 </template>
 
 <script>
-import BusinessNav from "../components/business-nav.vue";
-import BusinessAds from "../components/business-ads.vue";
-
 export default {
   components: {
-    BusinessNav,
-    BusinessAds
   },
   data: function() {
     return {};

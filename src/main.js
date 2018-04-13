@@ -11,6 +11,7 @@ import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 import Sandbox from './routes/sandbox.vue'
 import Business from './routes/business.vue'
+import BusinessDashboard from './routes/business-dashboard.vue'
 import BusinessAds from './routes/business-ads.vue'
 import BusinessSettings from './routes/business-settings.vue'
 import BusinessOffer from './routes/offer-info.vue'
@@ -75,10 +76,14 @@ const routes = [
   { path: '/account-dashboard', component: AccountDashboard },
   { path: '/account-settings', component: AccountSettings },
   { path: '/sandboxcomponent', component: Sandbox },
-  { path: '/business/:id', name: "business", component: Business },
-  { path: '/business/:id/ads', component: BusinessAds },
-  { path: '/business/:id/settings', component: BusinessSettings },
-  { path: '/business/:id/offer/:oid', component: BusinessOffer },
+  { path: '/business/:id', name: "business", component: Business,
+    children: [
+      { path: '/', name: "business-dashboard", component:BusinessDashboard},
+      { path: '/business/:id/ads', name: "business-ads", component: BusinessAds },
+      { path: '/business/:id/settings', name: "business-settings", component: BusinessSettings },
+      { path: '/business/:id/offer/:oid', name: "business-offer", component: BusinessOffer }
+    ] 
+  },
   { path: '*', component: NotFound }
 ]
 
