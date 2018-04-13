@@ -42,7 +42,7 @@
 
         <b-form-row>
           <b-col>
-            <b-button type="submit" variant='primary' class='mt-2'>
+            <b-button type="submit" variant='success' class='mt-2'>
               + Create Business
             </b-button>
           </b-col>
@@ -51,7 +51,6 @@
       </b-form>
     </b-col>
     <b-col cols='6' offset='3' md='5' offset-md='1'>
-      <b-card>Reactive google maps image</b-card>
     </b-col>
   </b-row>
 </template>
@@ -81,7 +80,7 @@
         .then((data) => {
           console.log(data)
           // Refresh the businesses
-          this.$store.commit('getBusinesses')
+          this.$store.dispatch('getBusinesses')
           // Clear the form
           document.getElementById("createBusiness").reset()
         })

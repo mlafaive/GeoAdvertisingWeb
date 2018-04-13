@@ -11,6 +11,22 @@ import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 import Sandbox from './routes/sandbox.vue'
 
+// vue2-google-maps: for reactive google maps component
+import * as VueGoogleMaps from 'vue2-google-maps'
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyBoGgGuV1YKv_lIquFYVXSfjIdKo2HHXto',
+    }
+})
+
+// googlemaps: for static google maps objects (static, or street view)
+var GoogleMapsAPI = require('googlemaps')
+var googleMapsConfig = {
+    key: 'AIzaSyA63AaNQeuLoZi5OjR4O2MFy2ReWo420kM',
+    secure: true
+}
+var gmAPI = new GoogleMapsAPI(googleMapsConfig)
+
 // vue-bootstrap: for bootstrap components
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
@@ -50,11 +66,38 @@ const store = new Vuex.Store({
         logout(state) {
             Object.keys(state).forEach(key => state[key] = null)
         },
-        getBusinesses(state) {
+        businesses(state, val) {
+            state.businesses = val
+        }
+    },
+    actions: {
+        getBusinesses({commit, state}) {
             var url = `users/${state.email}/businesses`;
 			Vue.http.get(url)
 			.then((data) => {
-				state.businesses = data.body.businesses
+				let businesses = data.body.businesses
+
+                console.log(businesses)
+
+                // Get a static map for each business
+                businesses.forEach((business) => {
+                    let address = `${business.store_address}, ${business.city.city_name}, ${business.city.state_name}`
+                    business.img = gmAPI.staticMap({
+                        center: address,
+                        zoom: 19,
+                        size: '600x300',
+                        maptype: 'roadmap',
+                        markers: [
+                            {
+                                location: address
+                            }
+                        ]
+                    })
+                    console.log(business.img)
+                })
+
+                // Commit the changes to state
+                commit('businesses', businesses)
 			})
 			.catch((err) => {
 				console.error(err)

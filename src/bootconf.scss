@@ -113,11 +113,12 @@ ul.nav {
 /* Business Dashboard */
 .business-card {
   cursor: pointer;
-  @include transition(all, 100ms);
+  img, h2, & {@include transition(all, 100ms);}
   &:hover {
     border-color: $gray;
-    background: #f3f3f3f3;
-    opacity: .90;
+
+    img {opacity: .75;}
+    h2 {color: $blue;}
   }
 }
 

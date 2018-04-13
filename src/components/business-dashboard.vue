@@ -21,7 +21,7 @@
     <b-row>
       <b-col class='mt-4 mb-4'>
         <b-collapse id="createForm">
-          <BusinessCreate class='p-4 m-0 border border-primary rounded'></BusinessCreate>
+          <BusinessCreate class='p-4 m-0 border border-success rounded'></BusinessCreate>
         </b-collapse>
       </b-col>
     </b-row>

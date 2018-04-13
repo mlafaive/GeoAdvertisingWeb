@@ -52,7 +52,7 @@ export default {
 				this.$store.commit("refresh_token", data.body.refresh_token)
 
 				// Get acocunt businesses
-				this.$store.commit("getBusinesses")
+				this.$store.dispatch("getBusinesses")
 
 				// Redirect to Home
 				this.$router.push({path: '/account-dashboard'})

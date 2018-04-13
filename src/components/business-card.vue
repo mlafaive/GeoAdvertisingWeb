@@ -1,7 +1,7 @@
 <template>
-  <b-card class='business-card mb-4' v-on:click='route(business.id)' img-src="https://lorempixel.com/600/300/" img-top no-body>
+  <b-card class='business-card mb-4' v-on:click='route(business.id)' :img-src='business.img' img-top no-body>
     <b-card-body class='text-center'>
-      <h2 class='font-weight-light mb-4'>{{business.name}}</h2>
+      <h2 class='font-weight-semilight mb-4 text-gray-dark'>{{business.name}}</h2>
       <p class='lead mb-0' style='font-size: 1rem'>
         {{business.store_address}}<br>
         {{business.city.city_name}}, {{business.city.state_name}}
