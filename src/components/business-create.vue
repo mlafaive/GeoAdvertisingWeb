@@ -14,7 +14,7 @@
         <b-form-row>
           <b-col>
             <b-form-group label="Street Address:" label-for='address'>
-              <b-form-input type="text" id="address" v-model='address' required></b-form-input>
+              <b-form-input type="text" id="address" v-model='address' v-on:change='updateCoordinates()' required></b-form-input>
             </b-form-group>
           </b-col>
         </b-form-row>
@@ -22,12 +22,12 @@
         <b-form-row>
           <b-col md='6'>
             <b-form-group label="City:" label-for='city'>
-              <b-form-input type="text" id="city" v-model='city' required></b-form-input>
+              <b-form-input type="text" id="city" v-model='city' v-on:change='updateCoordinates()' required></b-form-input>
             </b-form-group>
           </b-col>
           <b-col md='6'>
             <b-form-group label="State:" label-for='state'>
-              <b-form-input type="text" id="state" v-model='state' required></b-form-input>
+              <b-form-input type="text" id="state" v-model='state' v-on:change='updateCoordinates()' required></b-form-input>
             </b-form-group>
           </b-col>
         </b-form-row>
@@ -50,48 +50,81 @@
 
       </b-form>
     </b-col>
-    <b-col cols='6' offset='3' md='5' offset-md='1'>
+    <b-col class='mt-4 mt-md-0' md='5' offset-md='1'>
+        <p v-if='coordinates === null' class='text-center text-gray-dark'>
+            <i class='fa fa-circle-notch fa-spin'></i> Waiting for location
+        </p>
+        <gmap-map v-else :center='coordinates' :options='{disableDefaultUI: true}' :zoom='address ? 19 : 14' style='width: 100%; height: 250px'>
+            <gmap-marker v-if='city && state && address' :position='coordinates' :clickable='false' :draggable='false'></gmap-marker>
+        </gmap-map>
     </b-col>
   </b-row>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        error: null,
-        dba: '',
-        address: '',
-        city: '',
-        state: ''
-      }
-    },
-    methods: {
-      create: function() {
-        this.$http.post(
-          'businesses',
-          {
-            name: this.dba,
-            store_address: this.address,
-            city_name: this.city,
-            state_name: this.state
-          }
-        )
-        .then((data) => {
-          console.log(data)
-          // Refresh the businesses
-          this.$store.dispatch('getBusinesses')
-          // Clear the form
-          document.getElementById("createBusiness").reset()
-        })
-        .catch((err) => {
-          console.log(err)
-          if (err.body.message)
-            this.error = err.body.message
-          else if (err.body.error)
-            this.error = err.body.error
-        })
-      }
+    // googlemaps: for static google maps objects (static, or street view)
+    var GoogleMapsAPI = require('googlemaps')
+    var googleMapsConfig = {
+        key: 'AIzaSyA63AaNQeuLoZi5OjR4O2MFy2ReWo420kM',
+        secure: true
     }
-  }
+    var gmAPI = new GoogleMapsAPI(googleMapsConfig)
+
+    export default {
+        data() {
+          return {
+            error: null,
+            dba: '',
+            address: '',
+            city: '',
+            state: '',
+            coordinates: null
+          }
+        },
+        methods: {
+            updateCoordinates: function() {
+                var self = this
+                if (this.address && this.city && this.state) {
+                    gmAPI.geocode({address: `${this.address}, ${this.city}, ${this.state}`}, function(err, result) {
+                        console.log(result.results[0].geometry.location)
+                        self.coordinates = result.results[0].geometry.location
+                    })
+                }
+                else if (!this.address && this.city && this.state) {
+                    gmAPI.geocode({address: ` ${this.city}, ${this.state}`}, function(err, result) {
+                        console.log(result.results[0].geometry.location)
+                        self.coordinates = result.results[0].geometry.location
+                    })
+                }
+                else {
+                    self.coordinates = null
+                }
+            },
+            create: function() {
+            this.$http.post(
+              'businesses',
+              {
+                name: this.dba,
+                store_address: this.address,
+                city_name: this.city,
+                state_name: this.state
+              }
+            )
+            .then((data) => {
+              console.log(data)
+              // Refresh the businesses
+              this.$store.dispatch('getBusinesses')
+              // Clear the form
+              document.getElementById("createBusiness").reset()
+            })
+            .catch((err) => {
+              console.log(err)
+              if (err.body.message)
+                this.error = err.body.message
+              else if (err.body.error)
+                this.error = err.body.error
+            })
+            }
+        }
+    }
 </script>

@@ -49,7 +49,7 @@
     methods: {
       toggleCreateBtn: function() {
         this.btnText = (this.btnText === this.addText) ? this.hideText : this.addText
-      },
+      }
     },
   }
 </script>
