@@ -14,7 +14,7 @@
             <b-form-input type='text' name='name' v-model='name' :value='user.name'></b-form-input>
           </b-form-group>
           <b-form-group label='Interests:' label-for='interests'>
-            <b-checkbox-group name='interests' v-model='interests' :options='options'></b-checkbox-group>
+            <b-checkbox-group name='interests' v-model='checked' :options='options'></b-checkbox-group>
           </b-form-group>
           <b-button type='submit' variant='success'>Save</b-button>
         </b-form>
@@ -28,7 +28,7 @@ export default {
   data: function() {
     return {
       name: '',
-      interests: [],
+      checked: [],
       options: [],
       user: {
         name: '',
@@ -46,14 +46,17 @@ export default {
       return this.$http.get('interests')
     })
     .then(data => {
-      self.options = data.body.interests.map(option => {return {value: option.id, text: option.name, checked: false}})
+      self.options = data.body.interests.map(option => {return {value: option.id, text: option.name}})
+      console.log(self.options)
+      self.options.sort((a,b) => {
+        if (a.text < b.text) return -1
+        else if (a.text > b.text) return 1
+        return 0
+      })
+      console.log(self.options)
 
       self.user.interests.forEach(interest => {
-        self.options.forEach(option => {
-          if (interest.id === option.id) {
-            option.checked = true
-          }
-        })
+        self.checked.push(interest.id)
       })
     })
     .catch(console.error)
