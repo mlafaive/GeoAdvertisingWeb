@@ -11,6 +11,9 @@ import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 import Sandbox from './routes/sandbox.vue'
 import Business from './routes/business.vue'
+import BusinessAds from './routes/business-ads.vue'
+import BusinessSettings from './routes/business-settings.vue'
+import BusinessOffer from './routes/offer-info.vue'
 
 // vue-bootstrap: for bootstrap components
 import BootstrapVue from 'bootstrap-vue'
@@ -73,6 +76,9 @@ const routes = [
   { path: '/account-settings', component: AccountSettings },
   { path: '/sandboxcomponent', component: Sandbox },
   { path: '/business/:id', name: "business", component: Business },
+  { path: '/business/:id/ads', component: BusinessAds },
+  { path: '/business/:id/settings', component: BusinessSettings },
+  { path: '/business/:id/offer/:oid', component: BusinessOffer },
   { path: '*', component: NotFound }
 ]
 
