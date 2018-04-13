@@ -1,18 +1,21 @@
 <template>
 	<div>
     <BusinessNav></BusinessNav>
-
-    <!-- CreateOffer -->
-    <!-- Current Offers -->
+    <OfferCreate></OfferCreate>
+    <OfferDashboard></OfferDashboard>
 	</div>
 </template>
 
 <script>
 import BusinessNav from "../components/business-nav.vue";
+import OfferCreate from "../components/offer-create.vue";
+import OfferDashboard from "../components/offer-dashboard.vue";
 
 export default {
   components: {
-    BusinessNav
+    BusinessNav,
+    OfferCreate,
+    OfferDashboard
   },
   data: function() {
     return {};

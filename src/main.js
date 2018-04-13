@@ -27,6 +27,7 @@ Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api';
 import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
 
+
 // Vuex: for reactive state
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
@@ -109,3 +110,4 @@ new Vue({
     })
   }
 }).$mount("#app")
+
