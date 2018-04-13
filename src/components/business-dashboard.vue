@@ -41,9 +41,9 @@
     components: {BusinessCreate, BusinessCard},
     data: function() {
       return {
-        addText: '+ Add Business',
-        hideText: '- Hide Form',
-        btnText: '+ Add Business'
+        addText: '+ Create new',
+        hideText: '- Hide form',
+        btnText: '+ Create new'
       }
     },
     methods: {
