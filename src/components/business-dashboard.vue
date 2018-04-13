@@ -28,7 +28,7 @@
 
     <b-row>
         <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='business in businesses' :key='business.id'>
-          <router-link exact :to="{ name: 'business', params: { id: business.id } }"> 
+          <router-link exact :to="{ name: 'business-dashboard', params: { id: business.id } }"> 
             <b-card class='business-card' img-src="https://lorempixel.com/600/300/" img-top no-body>
               <b-card-body class='text-center'>
                 <h2 class='font-weight-light mb-4'>{{business.name}}</h2>
