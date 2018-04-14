@@ -34,7 +34,7 @@
         }).length
       },
       route: function(id) {
-        this.$router.push({path: `business/${id}`})
+        this.$router.push({name: `business-dashboard`, params: {id: id}})
       }
     }
   }

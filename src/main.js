@@ -79,46 +79,37 @@ const store = new Vuex.Store({
     actions: {
         getBusinesses({commit, state}) {
             var url = `users/${state.email}/businesses`;
-			Vue.http.get(url)
-			.then((data) => {
-				let businesses = data.body.businesses
+            Vue.http.get(url)
+            .then((data) => {
+                let businesses = data.body.businesses
 
                 console.log(businesses)
 
-                // Get a static map for each business
-                businesses.forEach((business) => {
-                    let address = `${business.store_address}, ${business.city.city_name}, ${business.city.state_name}`
-                    business.img = gmAPI.staticMap({
-                        center: address,
-                        zoom: 19,
-                        size: '600x300',
-                        maptype: 'roadmap',
-                        markers: [
-                            {
-                                location: address
-                            }
-                        ]
-                    })
-                    console.log(business.img)
-                })
+                  // Get a static map for each business
+                  businesses.forEach((business) => {
+                      let address = `${business.store_address}, ${business.city.city_name}, ${business.city.state_name}`
+                      business.img = gmAPI.staticMap({
+                          center: address,
+                          zoom: 19,
+                          size: '600x300',
+                          maptype: 'roadmap',
+                          markers: [
+                              {
+                                  location: address
+                              }
+                          ]
+                      })
+                      console.log(business.img)
+                  })
 
-                // Commit the changes to state
-                commit('businesses', businesses)
-			})
-			.catch((err) => {
-				console.error(err)
-			})
+              // Commit the changes to state
+              commit('businesses', businesses)
+            })
+            .catch((err) => {
+                console.error(err)
+            })
         }
     },
-    refresh_token(state, val) {
-      state.refresh_token = val
-    },
-    logout(state) {
-      state.email = null
-      state.access_token = null
-      state.refresh_token = null
-    }
-  },
   plugins: [createPersistedState()]
 })
 
