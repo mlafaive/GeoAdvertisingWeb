@@ -121,7 +121,7 @@ const routes = [
   {path: '/signup', component: Signup},
   {path: '/account-dashboard', component: AccountDashboard},
   {path: '/account-settings', component: AccountSettings},
-  {path: '/sandboxcomponent', component: Sandbox},
+  {path: '/sandbox', component: Sandbox},
   {path: '*', component: NotFound}
 ]
 
