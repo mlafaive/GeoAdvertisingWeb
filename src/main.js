@@ -10,6 +10,11 @@ import AccountSettings from './routes/account-settings.vue'
 import Logout from "./routes/logout.vue"
 import NotFound from './routes/404.vue'
 import Sandbox from './routes/sandbox.vue'
+import Business from './routes/business.vue'
+import BusinessDashboard from './routes/business-dashboard.vue'
+import BusinessAds from './routes/business-ads.vue'
+import BusinessSettings from './routes/business-settings.vue'
+import BusinessOffer from './routes/offer-info.vue'
 
 // vue2-google-maps: for reactive google maps component
 import * as VueGoogleMaps from 'vue2-google-maps'
@@ -41,6 +46,7 @@ Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api';
 // VeeValidate: for form input validation
 import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
+
 
 // Vuex: for reactive state
 import Vuex from 'vuex'
@@ -104,7 +110,16 @@ const store = new Vuex.Store({
 			})
         }
     },
-    plugins: [createPersistedState()]
+    refresh_token(state, val) {
+      state.refresh_token = val
+    },
+    logout(state) {
+      state.email = null
+      state.access_token = null
+      state.refresh_token = null
+    }
+  },
+  plugins: [createPersistedState()]
 })
 
 // vue-router: for single-page routing
@@ -113,19 +128,27 @@ Vue.use(VueRouter)
 
 // Register Routes
 const routes = [
-  {path: '/', component: Index},
-  {path: '/about', component: About},
-  {path: '/contact', component: Contact},
-  {path: '/login', component: Login},
-  {path: '/logout', component: Logout},
-  {path: '/signup', component: Signup},
-  {path: '/account-dashboard', component: AccountDashboard},
-  {path: '/account-settings', component: AccountSettings},
-  {path: '/sandbox', component: Sandbox},
-  {path: '*', component: NotFound}
+  { path: '/', component: Index },
+  { path: '/about', component: About },
+  { path: '/contact', component: Contact },
+  { path: '/login', component: Login },
+  { path: '/logout', component: Logout },
+  { path: '/signup', component: Signup },
+  { path: '/account-dashboard', component: AccountDashboard },
+  { path: '/account-settings', component: AccountSettings },
+  { path: '/sandboxcomponent', component: Sandbox },
+  { path: '/business/:id', name: "business", component: Business,
+    children: [
+      { path: '/', name: "business-dashboard", component:BusinessDashboard},
+      { path: '/business/:id/ads', name: "business-ads", component: BusinessAds },
+      { path: '/business/:id/settings', name: "business-settings", component: BusinessSettings },
+      { path: '/business/:id/offer/:oid', name: "business-offer", component: BusinessOffer }
+    ]
+  },
+  { path: '*', component: NotFound }
 ]
 
-const router = new VueRouter({routes})
+const router = new VueRouter({ routes })
 
 new Vue({
   render: createEle => createEle(App),
@@ -135,23 +158,23 @@ new Vue({
     // Set default $http options
     Vue.http.interceptors.push(function(request) {
       // keep auth token up to date
-      if(!request.headers.get("Authorization")) {
+      if (!request.headers.get("Authorization")) {
         request.headers.set('Authorization', `Bearer ${store.state.access_token}`);
       }
 
       return (response) => {
         if (response.status === 401) {
-          return Vue.http.post('refresh', {}, {headers: {'Authorization': `Bearer ${store.state.refresh_token}`}})
-          .then((data) => {
-            store.commit("access_token", data.body.access_token)
-            console.log("refreshed access token")
-            // retry the original request
-            return Vue.http[request.method.toLowerCase()](request.url, request.body)
-          })
-          .catch((err) => {
-            console.log("could not refresh access token:")
-            console.log(err)
-          })
+          return Vue.http.post('refresh', {}, { headers: { 'Authorization': `Bearer ${store.state.refresh_token}` } })
+            .then((data) => {
+              store.commit("access_token", data.body.access_token)
+              console.log("refreshed access token")
+              // retry the original request
+              return Vue.http[request.method.toLowerCase()](request.url, request.body)
+            })
+            .catch((err) => {
+              console.log("could not refresh access token:")
+              console.log(err)
+            })
         }
       }
     })

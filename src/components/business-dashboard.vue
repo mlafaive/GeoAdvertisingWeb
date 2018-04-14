@@ -27,8 +27,22 @@
     </b-row>
 
     <b-row>
-        <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='business in $store.state.businesses' :key='business.id'>
-          <BusinessCard :business='business'></BusinessCard>
+        <b-col cols='10' offset='1' md='6' offset-md='0' lg='4' v-for='business in businesses' :key='business.id'>
+          <router-link exact :to="{ name: 'business-dashboard', params: { id: business.id } }">
+            <b-card class='business-card' img-src="https://lorempixel.com/600/300/" img-top no-body>
+              <b-card-body class='text-center'>
+                <h2 class='font-weight-light mb-4'>{{business.name}}</h2>
+                <p class='lead mb-0' style='font-size: 1rem'>
+                  {{business.store_address}}<br>
+                  {{business.city.city_name}}, {{business.city.state_name}}
+                </p>
+              </b-card-body>
+              <b-card-footer class='text-center pb-2 pt-2'>
+                <b-badge variant='danger' v-if='activeOffers(business)'>{{activeOffers(business)}} Active Offers</b-badge>
+                <b-badge variant='dark' class='ml-2'>{{scheduledOffers(business)}} Scheduled Offers</b-badge>
+              </b-card-footer>
+            </b-card>
+            </router-link>
         </b-col>
     </b-row>
   </div>
