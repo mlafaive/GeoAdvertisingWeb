@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<BusinessDashboard v-if="$store.state.businesses === null || $store.state.businesses.length"></BusinessDashboard>
-		<NewBusinessDashboard v-else></NewBusinessDashboard>
+		<NewBusinessDashboard v-if="$store.state.businesses === null  || !$store.state.businesses.length"></NewBusinessDashboard>
+		<BusinessDashboard v-else></BusinessDashboard>
 	</div>
 </template>
 

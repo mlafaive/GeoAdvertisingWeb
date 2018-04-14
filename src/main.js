@@ -134,8 +134,6 @@ new Vue({
   beforeMount() {
     // Set default $http options
     Vue.http.interceptors.push(function(request) {
-      console.log(request)
-
       // keep auth token up to date
       if(!request.headers.get("Authorization")) {
         request.headers.set('Authorization', `Bearer ${store.state.access_token}`);

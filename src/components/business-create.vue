@@ -1,6 +1,8 @@
 <template>
   <b-row class='flex align-items-center'>
     <b-col md='6'>
+      <h3 class='font-weight-light mb-4'>Create a business</h3>
+
       <b-form v-on:submit.prevent='create' id="createBusiness">
 
         <b-form-row>
