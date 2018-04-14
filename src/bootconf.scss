@@ -121,5 +121,9 @@ ul.nav {
   }
 }
 
+.row a:hover {
+    text-decoration: none;
+}
+
 /* Bootstrap import */
 @import '~bootstrap/scss/bootstrap.scss'
