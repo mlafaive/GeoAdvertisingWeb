@@ -13,7 +13,12 @@
 			<b-col>
 				<p class='lead'><b>Starting</b>: {{formatDate(offer.start_time)}}</p>
 				<p class='lead'><b>Ending</b>: {{formatDate(offer.end_time)}}</p>
-				<p class='lead'><b>Interests</b>: {{offer.interests}}</p>
+				<p class='lead'><b>Interests</b>: 
+          <b-badge class="badge-left" v-for="interest in offer.interests" 
+            :key="interest.id" variant="dark">{{interest.name}}</b-badge>
+        </p>
+
+
 				{{offer}}
 			</b-col>
 		</b-row>
