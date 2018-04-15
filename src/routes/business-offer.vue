@@ -5,19 +5,33 @@
 	        <h1 class='mt-2 font-weight-light d-inline-block'>{{offer.description}}</h1>
 	      </b-col>
 	      <b-col class='text-center text-md-right'>
-	        <b-button v-b-toggle.createForm variant='link' v-on:click="toggleCreateBtn">{{btnText}}</b-button>
+	        <b-button v-b-toggle.updateForm variant='link' v-on:click="toggleCreateBtn">{{btnText}}</b-button>
 	      </b-col>
 	    </b-row>
 
+    <b-row>
+      <b-col class='mt-4 mb-4'>
+        <b-collapse id="updateForm">
+          <OfferUpdate :offer='offer' class='p-4 m-0 border border-success rounded'></OfferUpdate>
+        </b-collapse>
+      </b-col>
+    </b-row>
+    
 		<b-row>
 			<b-col>
 				<p class='lead'><b>Starting</b>: {{formatDate(offer.start_time)}}</p>
 				<p class='lead'><b>Ending</b>: {{formatDate(offer.end_time)}}</p>
-				<p class='lead'><b>Interests</b>: {{offer.interests}}</p>
+				<p class='lead'><b>Interests</b>: 
+          <b-badge class="badge-left" v-for="interest in offer.interests" 
+            :key="interest.id" variant="dark">{{interest.name}}</b-badge>
+        </p>
+
+
 				{{offer}}
 			</b-col>
 		</b-row>
 
+    <!-- Stats -->
 		<b-row>
 			<b-col>
 				<h1 class='font-weight-light mt-5'>Offer Statistics</h1>
@@ -53,19 +67,20 @@
 
 <script>
 import moment from 'moment'
+import OfferUpdate from '../components/offer-update.vue'
 import OfferAcceptChart from '../components/offer-accept-chart.vue'
 import OfferInterestChart from '../components/offer-interest-chart.vue'
 
 export default {
-  components: {OfferAcceptChart, OfferInterestChart},
+  components: {OfferUpdate, OfferAcceptChart, OfferInterestChart},
   data: function() {
     return {
       business_id: this.$route.params.id,
       offer_id: this.$route.params.oid,
       offer: {},
-	  editText: '+ Edit offer',
-	  hideText: '- Hide form',
-	  btnText: '+ Edit offer'
+      editText: '+ Edit offer',
+      hideText: '- Hide form',
+      btnText: '+ Edit offer'
     };
   },
   methods: {
