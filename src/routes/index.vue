@@ -1,7 +1,7 @@
 <template>
 	<b-row>
 		<b-col cols='6' pull='' md='4' offset-md='1' order-md='1'>
-			<img class='img-fluid mb-4 mb-md-0' src="@/assets/placeholder.png" alt="" />
+			<img class='img-fluid mb-4 mb-md-0 rounded' src="@/assets/popmap.png" alt="" />
 		</b-col>
 		<b-col md='7'>
 			<!-- <h1 class="text-gray">geode</h1> -->
