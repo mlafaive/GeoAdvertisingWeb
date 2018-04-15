@@ -24,7 +24,6 @@
         </b-form>
       </b-col>
     </b-row>
-    </b-row>
     <hr class='mt-5'/>
     <b-row>
       <b-col md='6' xl='4' class='mt-4 mb-4'>
