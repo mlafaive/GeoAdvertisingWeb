@@ -5,12 +5,13 @@
  *      where: offer = a single offer
  */
 
-import {Doughnut} from 'vue-chartjs'
+import {Doughnut, mixins} from 'vue-chartjs'
 import moment from 'moment'
 
 export default {
       extends: Doughnut,
       props: ['offer'],
+      mixins: [mixins.reactiveData],
       data () {
           return {
               chartData: {},
@@ -46,6 +47,8 @@ export default {
       },
       watch: {
           offer: function(newVal, oldVal) {
+              if (this.$data._chart)
+                this.$data._chart.destroy()
               this.reloadChart()
           }
       },

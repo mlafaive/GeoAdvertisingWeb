@@ -64,6 +64,8 @@ export default {
       },
       watch: {
           offers: function(val, old) {
+              if (this.$data._chart)
+                this.$data._chart.destroy()
               this.reloadChart()
           }
       },

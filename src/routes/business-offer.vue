@@ -29,6 +29,8 @@
 			</b-col>
 		</b-row>
 
+		<hr />
+
     	<!-- Stats -->
 		<b-row>
 			<b-col>
@@ -47,7 +49,10 @@
                 </ul>
             </b-col>
             <b-col cols='8' offset='2' sm='6' offset-sm='3' lg='4' offset-lg='2'>
-                <OfferAcceptChart :offer='offer'></OfferAcceptChart>
+                <OfferAcceptChart :offer='offer' v-show='offer.views'></OfferAcceptChart>
+				<p v-show='!offer.views' class='text-center text-gray-dark'>
+		            <i class='fa fa-circle-notch fa-spin'></i> Waiting on data
+		        </p>
             </b-col>
         </b-row>
 
@@ -57,7 +62,10 @@
                 <p class='lead'>Categorizes the users who <b>accepted</b> with this offer by their primary interest.</p>
             </b-col>
             <b-col cols='8' offset='2' sm='6' offset-sm='3' lg='4' offset-lg='2'>
-                <OfferInterestChart :offer='offer'></OfferInterestChart>
+                <OfferInterestChart v-show='offer.accepts' :offer='offer'></OfferInterestChart>
+				<p v-show='!offer.accepts' class='text-center text-gray-dark'>
+		            <i class='fa fa-circle-notch fa-spin'></i> Waiting on data
+		        </p>
             </b-col>
         </b-row>
 	</div>
@@ -93,6 +101,18 @@ export default {
           console.error(err);
         });
     },
+	refreshOffer: function () {
+		var url = `offers/${this.offer_id}`
+		this.$http.get(url)
+		.then(data => {
+			// only update if the view or accept counts are different
+			if (this.offer.views !== data.body.views || this.offer.accepts !== data.body.accepts)
+				this.offer = data.body
+		})
+		.catch(err => {
+			console.error(err)
+		})
+	},
 	toggleCreateBtn: function() {
 	  this.btnText = (this.btnText === this.editText) ? this.hideText : this.editText
   	},
@@ -102,7 +122,11 @@ export default {
     },
   },
   mounted() {
+	  // Update offer details every 30 seconds
     this.getOffer();
+	setInterval(() => {
+		this.refreshOffer()
+	}, 30000)
   }
 };
 </script>
