@@ -7,11 +7,21 @@
     </b-form-input>
                   <br>
 
-    <b-table hover :items="offers" :fields="ad_fields" 
-             :filter="filter" @row-clicked="clicked"
-     sort-by="status"
-     sort-order="asc"
-     ></b-table>
+    <b-table hover 
+              :items="offers" 
+              :fields="ad_fields" 
+              :filter="filter" 
+              @row-clicked="clicked"
+              sort-by="status"
+              sort-order="asc"
+     >
+      <template slot="status" slot-scope="row">
+        <b-button size="sm" v-if="row.value == 'Active'" variant="success">{{row.value}}</b-button>
+        <b-button size="sm" v-if="row.value == 'Scheduled'" variant="primary">{{row.value}}</b-button>
+        <b-button size="sm" v-if="row.value == 'Inactive'">{{row.value}}</b-button>
+      </template>
+     
+     </b-table>
 	</div>
 </template>
 
