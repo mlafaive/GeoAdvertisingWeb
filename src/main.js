@@ -128,7 +128,7 @@ const routes = [
   { path: '/account-dashboard', component: AccountDashboard },
   { path: '/account-settings', component: AccountSettings },
   { path: '/sandbox', component: Sandbox },
-  { path: '/business/:id', name: "business", component: Business,
+  { path: '/business/:id', component: Business,
     children: [
       { path: '/', name: "business-dashboard", component:BusinessDashboard},
       { path: '/business/:id/ads', name: "business-ads", component: BusinessAds },

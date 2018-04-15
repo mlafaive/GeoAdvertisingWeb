@@ -92,6 +92,7 @@ export default {
           this.$store.dispatch('getBusinesses')
           // Clear the form
           document.getElementById("createOffer").reset();
+          this.interests = []
         })
         .catch(err => {
           console.log(err);

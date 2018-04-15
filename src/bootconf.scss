@@ -110,8 +110,8 @@ ul.nav {
     }
 }
 
-/* Business Dashboard */
-.business-card {
+/* My Businesses Dashboard */
+.business-card, .offer-card {
   cursor: pointer;
   img, h2, & {@include transition(all, 100ms);}
   &:hover {
