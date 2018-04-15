@@ -5,7 +5,7 @@
 				<img class='img-fluid mb-4 mb-md-0' src="@/assets/phones.png" alt="" />
 			</b-col>
 			<b-col md='7'>
-				<div class="mb-4 display-4 text-cyan">Geode is a...</div>
+				<div class="mb-4 display-4 text-cyan">geode is a...</div>
 				<div class="explanations">
 					<h4 class='mb-4 ml-4 font-weight-light'>
 						<b class='text-blue'>...advertising platform</b>
@@ -26,7 +26,7 @@
 			<b-col>
 				<h2 class='mt-5 font-weight-light'>Want to learn more?</h2>
 				<p class='lead'>
-					[insert schpiel for local business owners. invite them to contact us to get their business account started]
+					<b><router-link :to="{path: 'contact'}">Contact us</router-link></b> to learn more about what <b class='text-cyan'>geode</b> can do for your business.
 				</p>
 			</b-col>
 		</b-row>

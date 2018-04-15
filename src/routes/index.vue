@@ -10,9 +10,9 @@
 				A mobile application that sends you deals and sales for local businesses near you. Sign up to find relevant deals near you!
 			</p>
 			<p class='mb-5'>
-				<a href="/about">
+				<router-link :to='{path: "about"}'>
 					<b>Learn More</b>
-				</a>
+				</router-link>
 			</p>
 			<b-row>
 				<b-col class="text-center">

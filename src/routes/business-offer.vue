@@ -9,29 +9,27 @@
 	      </b-col>
 	    </b-row>
 
-    <b-row>
-      <b-col class='mt-4 mb-4'>
-        <b-collapse id="updateForm">
-          <OfferUpdate :offer='offer' class='p-4 m-0 border border-success rounded'></OfferUpdate>
-        </b-collapse>
-      </b-col>
-    </b-row>
-    
 		<b-row>
 			<b-col>
 				<p class='lead'><b>Starting</b>: {{formatDate(offer.start_time)}}</p>
 				<p class='lead'><b>Ending</b>: {{formatDate(offer.end_time)}}</p>
-				<p class='lead'><b>Interests</b>: 
-          <b-badge class="badge-left" v-for="interest in offer.interests" 
-            :key="interest.id" variant="dark">{{interest.name}}</b-badge>
-        </p>
-
-
-				{{offer}}
+				<p class='lead'><b>Interests</b>:
+		          <b-badge class="badge-left" v-for="interest in offer.interests" :key="interest.id" variant="dark">
+					  {{interest.name}}
+				  </b-badge>
+		        </p>
 			</b-col>
 		</b-row>
 
-    <!-- Stats -->
+		<b-row>
+			<b-col class='mt-4 mb-4'>
+				<b-collapse id="updateForm">
+					<OfferUpdate v-if='offer.interests' :offer='offer' :getOffer='getOffer' class='p-4 m-0 border border-warning rounded'></OfferUpdate>
+				</b-collapse>
+			</b-col>
+		</b-row>
+
+    	<!-- Stats -->
 		<b-row>
 			<b-col>
 				<h1 class='font-weight-light mt-5'>Offer Statistics</h1>

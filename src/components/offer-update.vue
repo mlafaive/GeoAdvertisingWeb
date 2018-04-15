@@ -8,7 +8,7 @@
                 <b-form-row>
                 <b-col>
                     <b-form-group label="Offer Description:" label-for="offer_name">
-                        <b-form-input type="text" id="offer_name" v-model='offer_name' required>{{this.offer.description}}</b-form-input>
+                        <b-form-input type="text" id="offer_name" v-model='offer_name' required></b-form-input>
                     </b-form-group>
                 </b-col>
                 </b-form-row>
@@ -46,11 +46,11 @@
 
                 <b-form-row>
                 <b-col>
-                    <b-button type="submit" variant='success' class='mt-2'>
+                    <b-button type="submit" variant='warning' class='mt-2'>
                     + Update Offer
                     </b-button>
                     <b-button v-on:click="delete_offer" variant='danger' class='mt-2 badge-left'>
-                    + Delete Offer
+                    - Delete Offer
                     </b-button>
                 </b-col>
                 </b-form-row>
@@ -66,7 +66,7 @@
 import moment from "moment";
 
 export default {
-  props: ["offer"],
+  props: ["offer", "getOffer"],
   data() {
     return {
       business_id: this.$route.params.id,
@@ -75,49 +75,38 @@ export default {
       offer_name: this.offer.description,
       start: moment(this.offer.start_time).format('YYYY-MM-DDTHH:mm'),
       end: moment(this.offer.end_time).format('YYYY-MM-DDTHH:mm'),
-      interests: []
-    };
+      interests: this.offer.interests.map(i => i.id)
+    }
   },
   methods: {
     update: function() {
-    let url = `offers/${this.offer.id}`;
-    this.$http
-        .patch(url, {
-        description: this.offer_name,
-        start_time: moment(this.start).toISOString(),
-        end_time: moment(this.end).toISOString(),
-        interests: this.interests
+        let url = `offers/${this.offer.id}`;
+        this.$http.patch(url, {
+            description: this.offer_name,
+            start_time: moment(this.start).toISOString(),
+            end_time: moment(this.end).toISOString(),
+            interests: this.interests
         })
         .then(data => {
-        console.log(data);
-        // Refresh the offers
-        //this.getOffers();
-        // Refresh the businesses
-        this.$store.dispatch("getBusinesses");
-        // Clear the form
-        document.getElementById("updateOffer").reset();
-        this.interests = [];
+            console.log(data);
+            // Refresh the offer on the parent page
+            this.getOffer();
+            // Refresh the businesses
+            this.$store.dispatch("getBusinesses");
         })
         .catch(err => {
-        console.log(err);
-        if (err.body.message) this.error = err.body.message;
-        else if (err.body.error) this.error = err.body.error;
+            console.log(err);
+            if (err.body.message) this.error = err.body.message;
+            else if (err.body.error) this.error = err.body.error;
         });
     },
     delete_offer: function(){
         console.log("clicked delete function")
     }
   },
-  mounted() {
-      
-    for (var i = 0; i < this.offer.interests.length; i++){
-        this.interests.push(this.offer.interests[i].id)
-    }
-  },
-  created() {
-    // populate interest_options
-    this.$http
-      .get("interests")
+  created () {
+      // populate interest_options
+      this.$http.get("interests")
       .then(data => {
         this.interest_options = data.body.interests.map(option => {
           return { value: option.id, text: option.name };
