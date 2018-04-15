@@ -1,18 +1,17 @@
 <template>
 	<div>
-		<OfferCreate></OfferCreate>
-		<OfferDashboard></OfferDashboard>
+		<BusinessDashboard></BusinessDashboard>
 	</div>
 </template>
 
 <script>
 import OfferCreate from "../components/offer-create.vue";
-import OfferDashboard from "../components/offer-dashboard.vue";
+import BusinessDashboard from "../components/business-dashboard.vue";
 
 export default {
   components: {
     OfferCreate,
-    OfferDashboard
+    BusinessDashboard
   },
   data: function() {
     return {};

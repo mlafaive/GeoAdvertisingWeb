@@ -23,7 +23,7 @@
                 </ul>
                 <ul v-else class='nav float-md-right'>
                     <li>
-                        <router-link exact to="/account-dashboard">Dashboard</router-link>
+                        <router-link exact to="/account-dashboard">My Businesses</router-link>
                     </li>
                     <li>
                         <router-link exact to="/account-settings">Account Settings</router-link>

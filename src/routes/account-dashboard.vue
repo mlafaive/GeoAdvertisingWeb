@@ -1,20 +1,20 @@
 <template>
 	<div>
-		<NewBusinessDashboard v-if="$store.state.businesses === null  || !$store.state.businesses.length"></NewBusinessDashboard>
-		<BusinessDashboard v-else></BusinessDashboard>
+		<NewMyBusinesses v-if="$store.state.businesses === null  || !$store.state.businesses.length"></NewMyBusinesses>
+		<MyBusinesses v-else></MyBusinesses>
 	</div>
 </template>
 
 <script>
 import Header from '../components/Header.vue'
-import NewBusinessDashboard from '../components/new-business-dashboard.vue'
-import BusinessDashboard from '../components/business-dashboard.vue'
+import NewMyBusinesses from '../components/new-my-businesses.vue'
+import MyBusinesses from '../components/my-businesses.vue'
 
 export default {
 	components: {
 		Header,
-		NewBusinessDashboard,
-		BusinessDashboard
+		NewMyBusinesses,
+		MyBusinesses
 	},
 }
 </script>
