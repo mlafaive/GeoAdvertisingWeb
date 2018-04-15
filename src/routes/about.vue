@@ -16,7 +16,7 @@
 						that allows locals to view deals of community business owners
 					</h4>
 					<h4 class='ml-4 font-weight-light'>
-						<b class='text-purple'>...a senior design project</b>
+						<b class='text-purple'>...senior design project</b>
 						that does something cool
 					</h4>
 				</div>
@@ -26,7 +26,7 @@
 			<b-col>
 				<h2 class='mt-5 font-weight-light'>Want to learn more?</h2>
 				<p class='lead'>
-					<b><router-link :to="{path: 'contact'}">Contact us</router-link></b> to learn more about what <b class='text-cyan'>geode</b> can do for your business.
+					<b><router-link :to="{path: 'contact'}">Contact us</router-link></b> to learn more about what <b class='text-green'>geode</b> can do for your business.
 				</p>
 			</b-col>
 		</b-row>

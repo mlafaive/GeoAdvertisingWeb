@@ -7,20 +7,37 @@
     </b-form-input>
                   <br>
 
-    <b-table hover 
-              :items="offers" 
-              :fields="ad_fields" 
-              :filter="filter" 
+    <b-table hover
+              :items="offers"
+              :fields="ad_fields"
+              :filter="filter"
               @row-clicked="clicked"
               sort-by="status"
               sort-order="asc"
      >
       <template slot="status" slot-scope="row">
-        <b-button size="sm" v-if="row.value == 'Active'" variant="success">{{row.value}}</b-button>
-        <b-button size="sm" v-if="row.value == 'Scheduled'" variant="primary">{{row.value}}</b-button>
-        <b-button size="sm" v-if="row.value == 'Inactive'">{{row.value}}</b-button>
+        <div v-if="row.value == 'Active'">
+					<b-badge class='font-weight-regular' style='font-size: 1rem;' variant="success">{{row.value}}</b-badge> {{row.item.time_desc}}
+				</div>
+
+        <div v-if="row.value == 'Scheduled'">
+					<b-badge class='font-weight-regular' style='font-size: 1rem;' variant="primary">{{row.value}}</b-badge> {{row.item.time_desc}}
+				</div>
+
+        <div v-if="row.value == 'Past'">
+					<b-badge class='font-weight-regular' style='font-size: 1rem;'>{{row.value}}</b-badge> {{row.item.time_desc}}
+				</div>
+
       </template>
-     
+
+			<template slot="views" slot-scope="row">
+				<b-badge class='font-weight-regular' style='font-size: 1rem;' variant='warning'>{{row.value}}</b-badge>
+      </template>
+
+			<template slot="accepts" slot-scope="row">
+				<b-badge class='font-weight-regular' style='font-size: 1rem;' variant='success'>{{row.value}}</b-badge>
+      </template>
+
      </b-table>
 	</div>
 </template>
@@ -41,37 +58,37 @@ export default {
           label: 'Offer',
           sortable: true
         },
-        start_time: {
-          label: 'Start Time',
-          sortable: true
-        },
-        end_time: {
-          label: 'End Time',
-          sortable: true
-        },
         status: {
           label: 'Status',
           sortable: true
-        }
+        },
+				views: {
+					label: '# Viewed',
+					sortable: true
+				},
+				accepts: {
+					label: '# Accepted',
+					sortable: true
+				}
       }
     };
   },
-  methods: { 
+  methods: {
     formatDate: function(value){
       return moment(String(value)).format('MM/DD/YYYY [at] h:mm:ss a')
     },
     clicked: function(item){
       var id = item.id
       this.$router.push({ name: 'business-offer', params: { id: this.business_id, oid: id }})
-      
-    },    
+
+    },
     offerStatus: function(start_d, end_d) {
-      let now = new Date()      
+      let now = new Date()
       let start = new Date(start_d)
       let end = new Date(end_d)
 
       if (end <= now) {
-        return "Inactive"
+        return "Past"
       } else if (start > now) {
         return "Scheduled"
       } else {
@@ -84,19 +101,23 @@ export default {
         .get(url)
         .then(data => {
             this.offers = data.body.offers;
-            for (var i = 0; i < this.offers.length; i++) { 
-                this.offers[i].status = this.offerStatus(this.offers[i].start_time, this.offers[i].end_time);
-                
-                this.offers[i].start_time= this.formatDate(this.offers[i].start_time);
-                this.offers[i].end_time= this.formatDate(this.offers[i].end_time);
-            }
+						this.offers.forEach(offer => {
+							offer.status = this.offerStatus(offer.start_time, offer.end_time)
+							let now = moment()
+							if (offer.status === 'Scheduled')
+								offer.time_desc = 'starts in ' + moment(offer.start_time).from(now)
+							else if (offer.status === 'Active')
+								offer.time_desc = 'ends in ' + moment(offer.end_time).from(now)
+							else
+								offer.time_desc = 'ended ' + moment(offer.end_time).from(now)
+						})
         })
         .catch(err => {
           console.error(err);
         });
     }
   },
-  mounted() { 
+  mounted() {
     this.getOffers()
     console.log(this.offers);
   }

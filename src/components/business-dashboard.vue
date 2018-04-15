@@ -6,7 +6,7 @@
         <p class='lead'>Click on an offer to manage details and view statistics.</p>
       </b-col>
       <b-col class='text-center text-md-right'>
-        <b-button v-b-toggle.createForm variant='link' v-on:click='toggleCreateBtn'>{{btnText}}</b-button>
+        <b-button v-b-toggle.createForm variant='success' v-on:click='toggleCreateBtn'>{{btnText}}</b-button>
       </b-col>
     </b-row>
 

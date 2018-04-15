@@ -93,6 +93,8 @@ export default {
             this.getOffer();
             // Refresh the businesses
             this.$store.dispatch("getBusinesses");
+            // clear error
+            this.error = null
         })
         .catch(err => {
             console.log(err);

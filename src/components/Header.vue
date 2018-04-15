@@ -29,6 +29,9 @@
                         <router-link exact to="/account-settings">Account Settings</router-link>
                     </li>
                     <li>
+                        <router-link exact to="/contact">Contact</router-link>
+                    </li>
+                    <li>
                         <router-link exact to="/logout">Log Out</router-link>
                     </li>
                 </ul>

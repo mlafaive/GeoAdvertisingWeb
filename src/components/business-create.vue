@@ -118,6 +118,8 @@
               this.$store.dispatch('getBusinesses')
               // Clear the form
               document.getElementById("createBusiness").reset()
+              // clear errors
+              this.error = null
             })
             .catch((err) => {
               console.log(err)

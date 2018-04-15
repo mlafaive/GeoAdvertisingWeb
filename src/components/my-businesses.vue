@@ -15,7 +15,7 @@
         <p class='lead'>Select a business to manage offers and settings.</p>
       </b-col>
       <b-col class='text-center text-md-right'>
-        <b-button v-b-toggle.createForm variant='link' v-on:click="toggleCreateBtn">{{btnText}}</b-button>
+        <b-button v-b-toggle.createForm variant='success' v-on:click="toggleCreateBtn">{{btnText}}</b-button>
       </b-col>
     </b-row>
 

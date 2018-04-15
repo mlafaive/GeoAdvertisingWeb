@@ -59,7 +59,7 @@
         <b-row class='flex align-items-center mt-5 mb-5'>
             <b-col lg='6'>
                 <h2 class='font-weight-light'>Engagement by Segment</h2>
-                <p class='lead'>Categorizes the users who <b>accepted</b> with this offer by their primary interest.</p>
+                <p class='lead'>Categorizes the users who <b>accepted</b> this offer by their interests.</p>
             </b-col>
             <b-col cols='8' offset='2' sm='6' offset-sm='3' lg='4' offset-lg='2'>
                 <OfferInterestChart v-show='offer.accepts' :offer='offer'></OfferInterestChart>
@@ -126,7 +126,7 @@ export default {
     this.getOffer();
 	setInterval(() => {
 		this.refreshOffer()
-	}, 30000)
+	}, 15000)
   }
 };
 </script>

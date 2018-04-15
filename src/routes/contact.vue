@@ -16,7 +16,7 @@
 						</b-form-group>
 
 						<b-form-group label="Message:" label-for="message">
-							<b-form-textarea id='message' :rows='4' required></b-form-textarea>
+							<b-form-textarea id='message' v-model='message' :rows='4' required></b-form-textarea>
 						</b-form-group>
 
 						<b-button type="submit" variant='info' block>Send Message</b-button>
@@ -34,6 +34,11 @@ export default {
 	name: 'Contact',
 	components: {
 		Header
+	},
+	data() {
+		return {
+			message: ''
+		}
 	}
 }
 </script>

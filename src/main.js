@@ -45,7 +45,7 @@ Vue.http.options.root = 'https://geo-advertising.herokuapp.com/api';
 
 // VeeValidate: for form input validation
 import VeeValidate from 'vee-validate'
-Vue.use(VeeValidate)
+Vue.use(VeeValidate, {fieldsBagName: 'veeFields'})
 
 
 // Vuex: for reactive state

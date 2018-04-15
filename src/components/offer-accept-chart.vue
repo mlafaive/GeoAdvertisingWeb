@@ -32,7 +32,7 @@ export default {
                 {
                     data: [this.offer.views - this.offer.accepts, this.offer.accepts],
                     backgroundColor: [
-                        '#eb3b5a',
+                        '#f7b731',
                         '#20bf6b',
                     ]
                 }

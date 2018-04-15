@@ -93,6 +93,8 @@ export default {
           // Clear the form
           document.getElementById("createOffer").reset();
           this.interests = []
+          // clear errors
+          this.error = null
         })
         .catch(err => {
           console.log(err);
