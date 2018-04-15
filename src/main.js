@@ -127,7 +127,7 @@ const routes = [
   { path: '/signup', component: Signup },
   { path: '/account-dashboard', component: AccountDashboard },
   { path: '/account-settings', component: AccountSettings },
-  { path: '/sandboxcomponent', component: Sandbox },
+  { path: '/sandbox', component: Sandbox },
   { path: '/business/:id', name: "business", component: Business,
     children: [
       { path: '/', name: "business-dashboard", component:BusinessDashboard},

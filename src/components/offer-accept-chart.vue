@@ -25,20 +25,28 @@ export default {
               },
           }
       },
+      methods: {
+        reloadChart() {
+            this.chartData.labels = ['Passed', 'Accepted']
+            this.chartData.datasets = [
+                {
+                    data: [this.offer.views - this.offer.accepts, this.offer.accepts],
+                    backgroundColor: [
+                        '#eb3b5a',
+                        '#20bf6b',
+                    ]
+                }
+            ]
+            this.renderChart(this.chartData, this.options)
+        }
+      },
       watch: {
           offer: function(newVal, oldVal) {
-              this.chartData.labels = ['Passed', 'Accepted']
-              this.chartData.datasets = [
-                  {
-                      data: [this.offer.views - this.offer.accepts, this.offer.accepts],
-                      backgroundColor: [
-                          '#eb3b5a',
-                          '#20bf6b',
-                      ]
-                  }
-              ]
-              this.renderChart(this.chartData, this.options)
+              this.reloadChart()
           }
+      },
+      mounted() {
+          if (this.offer.accepts) this.reloadChart()
       }
   }
 </script>

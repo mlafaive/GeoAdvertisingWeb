@@ -13,7 +13,6 @@ export default {
       props: ['offers'],
       data () {
           return {
-              offerData: {},
               chartData: {},
               options: {
                   title: {
@@ -33,9 +32,9 @@ export default {
               }
           }
       },
-      watch: {
-          offers: function(newVal, oldVal) {
-              this.offerData = this.offers.map(offer => {
+      methods: {
+          reloadChart() {
+              let offerData = this.offers.map(offer => {
                   return {
                       views: offer.views,
                       accepts: offer.accepts,
@@ -47,21 +46,29 @@ export default {
                   return 0
               })
 
-              this.chartData.labels = this.offerData.map(offer => offer.start.format('MMM DD, YYYY'))
+              this.chartData.labels = offerData.map(offer => offer.start.format('MMM DD, YYYY'))
               this.chartData.datasets = [
                   {
                       label: '# of Views',
-                      data: this.offerData.map(offer => offer.views),
+                      data: offerData.map(offer => offer.views),
                       fill: false
                   },
                   {
                       label: '# of Accepts',
-                      data: this.offerData.map(offer => offer.accepts),
+                      data: offerData.map(offer => offer.accepts),
                       fill: false
                   }
               ]
               this.renderChart(this.chartData, this.options)
           }
+      },
+      watch: {
+          offers: function(val, old) {
+              this.reloadChart()
+          }
+      },
+      mounted() {
+          if (this.offers.length) this.reloadChart()
       }
   }
 </script>

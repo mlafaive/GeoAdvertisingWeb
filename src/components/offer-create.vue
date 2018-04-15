@@ -88,6 +88,8 @@ export default {
           console.log(data);
           // Refresh the offers
           this.getOffers();
+          // Refresh the businesses
+          this.$store.dispatch('getBusinesses')
           // Clear the form
           document.getElementById("createOffer").reset();
         })
