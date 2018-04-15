@@ -29,7 +29,7 @@
                 <b-form-row>
                 <b-col>
                     <b-form-group label="Interests:" label-for='address'>
-                        <b-form-checkbox-group :options="interest_options" />
+                        <b-form-checkbox-group :options="interest_options" v-model='interests' />
                     </b-form-group>
                 </b-col>
                 </b-form-row>

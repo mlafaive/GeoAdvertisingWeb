@@ -14,7 +14,7 @@ import Business from './routes/business.vue'
 import BusinessDashboard from './routes/business-dashboard.vue'
 import BusinessAds from './routes/business-ads.vue'
 import BusinessSettings from './routes/business-settings.vue'
-import BusinessOffer from './routes/offer-info.vue'
+import BusinessOffer from './routes/business-offer.vue'
 
 // vue2-google-maps: for reactive google maps component
 import * as VueGoogleMaps from 'vue2-google-maps'

@@ -33,35 +33,35 @@ export default {
               }
           }
       },
-      mounted () {
-          this.renderChart(this.chartData, this.options)
-      },
-      beforeMount() {
-          this.offerData = this.offers.map(offer => {
-                      return {
-                          views: offer.views,
-                          accepts: offer.accepts,
-                          start: new moment(offer.start_time)
-                      }
-                  }).sort(function(a,b) {
-                      if (a.start < b.start) return -1
-                      if (b.start < a.start) return 1
-                      return 0
-                  })
+      watch: {
+          offers: function(newVal, oldVal) {
+              this.offerData = this.offers.map(offer => {
+                  return {
+                      views: offer.views,
+                      accepts: offer.accepts,
+                      start: new moment(offer.start_time)
+                  }
+              }).sort(function(a,b) {
+                  if (a.start < b.start) return -1
+                  if (b.start < a.start) return 1
+                  return 0
+              })
 
-          this.chartData.labels = this.offerData.map(offer => offer.start.format('MMM DD, YYYY'))
-          this.chartData.datasets = [
-              {
-                  label: '# of Views',
-                  data: this.offerData.map(offer => offer.views),
-                  fill: false
-              },
-              {
-                  label: '# of Accepts',
-                  data: this.offerData.map(offer => offer.accepts),
-                  fill: false
-              }
-          ]
+              this.chartData.labels = this.offerData.map(offer => offer.start.format('MMM DD, YYYY'))
+              this.chartData.datasets = [
+                  {
+                      label: '# of Views',
+                      data: this.offerData.map(offer => offer.views),
+                      fill: false
+                  },
+                  {
+                      label: '# of Accepts',
+                      data: this.offerData.map(offer => offer.accepts),
+                      fill: false
+                  }
+              ]
+              this.renderChart(this.chartData, this.options)
+          }
       }
   }
 </script>

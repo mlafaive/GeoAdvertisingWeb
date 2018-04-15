@@ -5,11 +5,12 @@
  *      where: offer = a single offer
  */
 
-import {Doughnut} from 'vue-chartjs'
+import {Doughnut, mixins} from 'vue-chartjs'
 import moment from 'moment'
 
 export default {
       extends: Doughnut,
+      mixins: [mixins.reactiveData],
       props: ['offer'],
       data () {
           return {
@@ -24,20 +25,20 @@ export default {
               },
           }
       },
-      mounted () {
-          this.renderChart(this.chartData, this.options)
-      },
-      beforeMount() {
-          this.chartData.labels = ['Passed', 'Accepted']
-          this.chartData.datasets = [
-              {
-                  data: [this.offer.views - this.offer.accepts, this.offer.accepts],
-                  backgroundColor: [
-                      '#eb3b5a',
-                      '#20bf6b',
-                  ]
-              }
-          ]
+      watch: {
+          offer: function(newVal, oldVal) {
+              this.chartData.labels = ['Passed', 'Accepted']
+              this.chartData.datasets = [
+                  {
+                      data: [this.offer.views - this.offer.accepts, this.offer.accepts],
+                      backgroundColor: [
+                          '#eb3b5a',
+                          '#20bf6b',
+                      ]
+                  }
+              ]
+              this.renderChart(this.chartData, this.options)
+          }
       }
   }
 </script>

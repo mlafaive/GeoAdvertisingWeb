@@ -5,7 +5,7 @@
         <h1 class='mt-2 font-weight-light d-inline-block'>My Offers</h1>
       </b-col>
       <b-col class='text-center text-md-right'>
-        <b-button v-b-toggle.createForm variant='link'>{{btnText}}</b-button>
+        <b-button v-b-toggle.createForm variant='link' v-on:click='toggleCreateBtn'>{{btnText}}</b-button>
       </b-col>
     </b-row>
 
@@ -65,6 +65,9 @@ export default {
     formatDate: function(value){
       return moment(String(value)).format('dddd MMMM Do, YYYY [at] h:mm A')
     },
+    toggleCreateBtn: function() {
+      this.btnText = (this.btnText === this.addText) ? this.hideText : this.addText
+      },
     create: function() {
       this.$http
         .post("businesses", {
