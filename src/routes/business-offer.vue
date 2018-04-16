@@ -131,6 +131,10 @@ export default {
   },
 	beforeDestroy() {
 			clearInterval(this.interval)
-	}
+	},
+	beforeMount() {
+    if (!this.$store.state.email)
+      this.$router.push({path: '/login'})
+  }
 };
 </script>

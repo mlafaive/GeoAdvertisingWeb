@@ -17,6 +17,10 @@ export default {
     return {};
   },
   methods: {},
-  mounted() {}
+  mounted() {},
+	beforeMount() {
+    if (!this.$store.state.email)
+      this.$router.push({path: '/login'})
+  }
 };
 </script>

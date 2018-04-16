@@ -1,10 +1,21 @@
 <template>
 <div>
     <b-row class='flex align-items-center'>
-      <b-col cols='12' md='10' class='text-center text-md-left'>
+      <b-col cols='12' md='12' class='text-center text-md-left'>
         <h1 class='mt-2 font-weight-light d-inline-block'>Business Statistics</h1>
+        <div v-if='!relevantOffers.length' class='mt-4'>
+          <h4 class='font-weight-light text-danger'>Nothing to see here...</h4>
+          <p class='lead'>
+            Once you have offers that are active or have completed, you will be able to see statistics about customer engagement over time.
+            Get started by creating your first offer in the <router-link :to="{path: `/business/${business_id}/ads`}">My Offers</router-link> page.
+          </p>
+        </div>
+      </b-col>
+    </b-row>
 
-        <h2 class='font-weight-light'>Offer Performance</h2>
+    <b-row v-if='relevantOffers.length'>
+      <b-col>
+        <h2 class='font-weight-light mt-4'>Offer Performance</h2>
         <p class='lead'>Displays consumer engagement over all past and active offers:</p>
         <BusinessChart v-if='relevantOffers' :offers='relevantOffers'></BusinessChart>
       </b-col>

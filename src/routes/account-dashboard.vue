@@ -16,5 +16,9 @@ export default {
 		NewMyBusinesses,
 		MyBusinesses
 	},
+	beforeMount() {
+		if (!this.$store.state.email)
+			this.$router.push({path: '/login'})
+	}
 }
 </script>

@@ -151,6 +151,10 @@ export default {
       this.setChecked()
     })
     .catch(console.error)
+  },
+  beforeMount() {
+    if (!this.$store.state.email)
+      this.$router.push({path: '/login'})
   }
 }
 </script>

@@ -16,11 +16,11 @@
               My Offers
           </router-link>
           </b-nav-item>
-        <b-nav-item href="#">
+        <!-- <b-nav-item href="#">
           <router-link exact :to="{ name: 'business-settings', params: { id: business_id } }">
               Business Settings
           </router-link>
-          </b-nav-item>
+          </b-nav-item> -->
       </b-navbar-nav>
 
     </b-collapse>
