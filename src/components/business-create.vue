@@ -76,6 +76,7 @@
     var gmAPI = new GoogleMapsAPI(googleMapsConfig)
 
     export default {
+        props: ['modal'],
         data() {
           return {
             loading: false,
@@ -126,6 +127,9 @@
                 document.getElementById("createBusiness").reset()
                 // clear errors
                 this.error = null
+                // Collapse the modal
+                // if (this.modal)
+                  // this.$root.emit('bv::toggle::collapse', this.modal)
               })
               .catch((err) => {
                 this.loading = false;
