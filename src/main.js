@@ -128,7 +128,7 @@ const routes = [
   { path: '/about', component: About },
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },
-  { path: '/logout', component: Logout },
+  { path: '/logout', name: "logout-app", component: Logout },
   { path: '/signup', component: Signup },
   { path: '/account-dashboard', component: AccountDashboard },
   { path: '/account-settings', component: AccountSettings },

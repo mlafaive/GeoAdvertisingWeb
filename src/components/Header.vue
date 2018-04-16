@@ -31,16 +31,36 @@
                     <li>
                         <router-link exact to="/contact">Contact</router-link>
                     </li>
-                    <li>
-                        <router-link exact to="/logout">Log Out</router-link>
+                    <li @click="showModal" >
+                        <router-link exact to="#">Log Out</router-link>
                     </li>
                 </ul>
             </b-col>
         </b-row>
+        
+        <b-modal ref="logoutModal" class="text-centered" size="sm" centered hide-footer title="Log Off">
+            <p class="mb-3">Are you sure you want to log off?</p>
+            <div class="mb-2">                    
+                <b-button class="mr-3" @click="hideModal" variant="primary">Stay Logged On</b-button>
+                <b-button variant="danger" class="mb-1" v-on:click="logOut">Log Off</b-button>
+            </div>
+        </b-modal>
     </header>
 </template>
 
 <script>
 export default {
+    methods: {        
+        showModal: function () {
+            this.$refs.logoutModal.show()
+        },
+        hideModal: function () {
+            this.$refs.logoutModal.hide()
+        },
+        logOut: function() {
+            this.$router.push({name: `logout-app`, params: {}})
+            this.hideModal();
+        }
+    }
 }
 </script>
