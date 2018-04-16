@@ -78,7 +78,7 @@
 import moment from "moment";
 
 export default {
-  props: ["offer", "getOffer"],
+  props: ["offer", "getOffer", 'modal'],
   data() {
     return {
         loading: false,
@@ -111,6 +111,10 @@ export default {
             this.$store.dispatch("getBusinesses");
             // clear error
             this.error = null
+            // Collapse the modal
+            if (this.modal) {
+              this.$root.$emit('bv::toggle::collapse', this.modal)
+            }
         })
         .catch(err => {
           console.log(err);

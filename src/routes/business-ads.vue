@@ -14,7 +14,7 @@
     <b-row>
       <b-col class='mt-4 mb-4'>
         <b-collapse id="createForm">
-          <OfferCreate :getOffers='getOffers' class='p-4 m-0 border border-success rounded'></OfferCreate>
+          <OfferCreate :getOffers='getOffers' modal='createForm' class='p-4 m-0 border border-success rounded'></OfferCreate>
         </b-collapse>
       </b-col>
     </b-row>
