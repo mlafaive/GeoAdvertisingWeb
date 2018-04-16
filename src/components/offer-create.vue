@@ -46,8 +46,11 @@
 
                 <b-form-row>
                 <b-col>
-                    <b-button type="submit" variant='success' class='mt-2'>
-                    + Create Offer
+                    <b-button v-if="!loading" type="submit" variant='success' class='mt-2'>
+                        + Create Offer
+                    </b-button>
+                    <b-button v-else disabled variant='success' class='mt-2'>
+                        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                     </b-button>
                 </b-col>
                 </b-form-row>
@@ -66,17 +69,19 @@ export default {
     props: ['getOffers'],
   data() {
     return {
-      business_id: this.$route.params.id,
-      interest_options: [],
-      error: null,
-      offer_name: "",
-      start: "",
-      end: "",
-      interests: []
+        loading: false,
+        business_id: this.$route.params.id,
+        interest_options: [],
+        error: null,
+        offer_name: "",
+        start: "",
+        end: "",
+        interests: []
     };
   },
   methods: {
     create: function() {
+        this.loading = true;
         let url = `businesses/${this.business_id}/offers`
         this.$http.post(url, {
           description: this.offer_name,
@@ -85,19 +90,21 @@ export default {
           interests: this.interests
         })
         .then(data => {
-          console.log(data);
-          // Refresh the offers
-          this.getOffers();
-          // Refresh the businesses
-          this.$store.dispatch('getBusinesses')
-          // Clear the form
-          document.getElementById("createOffer").reset();
-          this.interests = []
-          // clear errors
-          this.error = null
+            console.log(data);
+            this.loading = false;
+            // Refresh the offers
+            this.getOffers();
+            // Refresh the businesses
+            this.$store.dispatch('getBusinesses')
+            // Clear the form
+            document.getElementById("createOffer").reset();
+            this.interests = []
+            // clear errors
+            this.error = null
         })
         .catch(err => {
           console.log(err);
+          this.loading = false;
           if (err.body.message) this.error = err.body.message;
           else if (err.body.error) this.error = err.body.error;
         });

@@ -46,8 +46,11 @@
 
                 <b-form-row>
                 <b-col>
-                    <b-button type="submit" variant='warning' class='mt-2'>
+                    <b-button v-if="!loading" type="submit" variant='warning' class='mt-2'>
                     + Update Offer
+                    </b-button>
+                    <b-button v-else disabled variant='warning' class='mt-2'>
+                        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                     </b-button>
                     <b-button @click="showModal" variant='danger' class='mt-2 badge-left'>
                     - Delete Offer
@@ -78,6 +81,7 @@ export default {
   props: ["offer", "getOffer"],
   data() {
     return {
+        loading: false,
         business_id: this.$route.params.id,
         interest_options: [],
         error: null,
@@ -89,6 +93,7 @@ export default {
   },
   methods: {
     update: function() {
+      this.loading = true;
       let url = `offers/${this.offer.id}`;
       this.$http
         .patch(url, {
@@ -99,6 +104,7 @@ export default {
         })
         .then(data => {
             console.log(data);
+            this.loading = false;
             // Refresh the offer on the parent page
             this.getOffer();
             // Refresh the businesses
@@ -108,6 +114,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.loading = false;
           if (err.body.message) this.error = err.body.message;
           else if (err.body.error) this.error = err.body.error;
         });
@@ -131,7 +138,7 @@ export default {
           else if (err.body.error) this.error = err.body.error;
         });
         this.hideModal();
-        this.$router.push({name: `business-dashboard`, params: {id: this.business_id}})
+        this.$router.push({name: `business-ads`, params: {id: this.business_id}})
     }
   },
   created() {
