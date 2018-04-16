@@ -49,7 +49,7 @@
                     <b-button type="submit" variant='warning' class='mt-2'>
                     + Update Offer
                     </b-button>
-                    <b-button v-on:click="delete_offer" variant='danger' class='mt-2 badge-left'>
+                    <b-button @click="showModal" variant='danger' class='mt-2 badge-left'>
                     - Delete Offer
                     </b-button>
                 </b-col>
@@ -58,6 +58,15 @@
             </b-form>
         </b-col>
     </b-row>
+
+    <b-modal ref="deleteOfferModal" centered title="Delete Offer">
+        <p classs="mb-2"><b>Offer: </b><i>{{offer_name}}</i></p>
+        <p class="my-4">Are you sure you want to delete this offer?</p>
+       <div slot="modal-footer" class="w-100 text-center">
+           <b-button class="mr-3" @click="hideModal" variant="primary">Keep Offer</b-button>
+           <b-button variant="danger"  v-on:click="delete_offer">Delete Offer</b-button>
+       </div>
+    </b-modal>
 </div>
 
 </template>
@@ -69,23 +78,24 @@ export default {
   props: ["offer", "getOffer"],
   data() {
     return {
-      business_id: this.$route.params.id,
-      interest_options: [],
-      error: null,
-      offer_name: this.offer.description,
-      start: moment(this.offer.start_time).format('YYYY-MM-DDTHH:mm'),
-      end: moment(this.offer.end_time).format('YYYY-MM-DDTHH:mm'),
-      interests: this.offer.interests.map(i => i.id)
-    }
+        business_id: this.$route.params.id,
+        interest_options: [],
+        error: null,
+        offer_name: this.offer.description,
+        start: moment(this.offer.start_time).format("YYYY-MM-DDTHH:mm"),
+        end: moment(this.offer.end_time).format("YYYY-MM-DDTHH:mm"),
+        interests: this.offer.interests.map(i => i.id)
+    };
   },
   methods: {
     update: function() {
-        let url = `offers/${this.offer.id}`;
-        this.$http.patch(url, {
-            description: this.offer_name,
-            start_time: moment(this.start).toISOString(),
-            end_time: moment(this.end).toISOString(),
-            interests: this.interests
+      let url = `offers/${this.offer.id}`;
+      this.$http
+        .patch(url, {
+          description: this.offer_name,
+          start_time: moment(this.start).toISOString(),
+          end_time: moment(this.end).toISOString(),
+          interests: this.interests
         })
         .then(data => {
             console.log(data);
@@ -97,18 +107,37 @@ export default {
             this.error = null
         })
         .catch(err => {
-            console.log(err);
-            if (err.body.message) this.error = err.body.message;
-            else if (err.body.error) this.error = err.body.error;
+          console.log(err);
+          if (err.body.message) this.error = err.body.message;
+          else if (err.body.error) this.error = err.body.error;
         });
     },
-    delete_offer: function(){
-        console.log("clicked delete function")
+    showModal () {
+      this.$refs.deleteOfferModal.show()
+    },
+    hideModal () {
+      this.$refs.deleteOfferModal.hide()
+    },
+    delete_offer: function() {
+      let url = `offers/${this.offer.id}`;
+      this.$http
+        .delete(url, {})
+        .then(data => {
+          console.log(data);
+        })
+        .catch(err => {
+          console.log(err);
+          if (err.body.message) this.error = err.body.message;
+          else if (err.body.error) this.error = err.body.error;
+        });
+        this.hideModal();
+        this.$router.push({name: `business-dashboard`, params: {id: this.business_id}})
     }
   },
-  created () {
-      // populate interest_options
-      this.$http.get("interests")
+  created() {
+    // populate interest_options
+    this.$http
+      .get("interests")
       .then(data => {
         this.interest_options = data.body.interests.map(option => {
           return { value: option.id, text: option.name };
