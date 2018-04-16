@@ -13,7 +13,7 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="#">
           <router-link exact :to="{ name: 'business-ads', params: { id: business_id } }">
-              Advertisements
+              My Offers
           </router-link>
           </b-nav-item>
         <b-nav-item href="#">

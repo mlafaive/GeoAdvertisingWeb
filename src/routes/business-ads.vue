@@ -1,11 +1,29 @@
 <template>
 	<div>
-    <h1>Offers</h1>
+
+		<b-row class='flex align-items-center'>
+      <b-col cols='12' md='10' class='text-center text-md-left'>
+        <h1 class='mt-2 font-weight-light d-inline-block'>My Offers</h1>
+        <p class='lead'>Click on an offer to manage details and view statistics.</p>
+      </b-col>
+      <b-col class='text-center text-md-right'>
+        <b-button v-b-toggle.createForm variant='success' v-on:click='toggleCreateBtn'>{{btnText}}</b-button>
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col class='mt-4 mb-4'>
+        <b-collapse id="createForm">
+          <OfferCreate :getOffers='getOffers' class='p-4 m-0 border border-success rounded'></OfferCreate>
+        </b-collapse>
+      </b-col>
+    </b-row>
+
     <b-form-input v-model="filter"
                   type="text"
-                  placeholder="Search advertisements">
+                  placeholder="Search advertisements"
+									class='mb-4'>
     </b-form-input>
-                  <br>
 
     <b-table hover
               :items="offers"
@@ -44,10 +62,10 @@
 
 <script>
 import moment from 'moment'
+import OfferCreate from '../components/offer-create.vue'
 
 export default {
-  components: {
-  },
+  components: {OfferCreate},
   data: function() {
     return {
       filter: "",
@@ -70,13 +88,16 @@ export default {
 					label: '# Accepted',
 					sortable: true
 				}
-      }
+      },
+			addText: '+ Create new',
+			hideText: '- Hide form',
+			btnText: '+ Create new',
     };
   },
   methods: {
-    formatDate: function(value){
-      return moment(String(value)).format('MM/DD/YYYY [at] h:mm:ss a')
-    },
+		toggleCreateBtn: function() {
+				this.btnText = (this.btnText === this.addText) ? this.hideText : this.addText
+		},
     clicked: function(item){
       var id = item.id
       this.$router.push({ name: 'business-offer', params: { id: this.business_id, oid: id }})
@@ -119,7 +140,6 @@ export default {
   },
   mounted() {
     this.getOffers()
-    console.log(this.offers);
   }
 };
 </script>

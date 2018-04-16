@@ -124,9 +124,9 @@ export default {
   mounted() {
 	  // Update offer details every 30 seconds
     this.getOffer();
-	setInterval(() => {
-		this.refreshOffer()
-	}, 15000)
+		setInterval(() => {
+			this.refreshOffer()
+		}, 15000)
   }
 };
 </script>

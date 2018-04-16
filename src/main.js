@@ -38,6 +38,11 @@ Vue.use(BootstrapVue)
 import './bootconf.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+// vue-datetime: for cleaner datetime component
+import Datetime from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+Vue.use(Datetime)
+
 // vue-resource: for http request wrappers
 import VueResource from 'vue-resource'
 Vue.use(VueResource);

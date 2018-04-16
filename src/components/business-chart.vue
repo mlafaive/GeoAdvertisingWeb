@@ -15,11 +15,6 @@ export default {
           return {
               chartData: {},
               options: {
-                  title: {
-                      display: true,
-                      text: 'Consumer engagement over all offers',
-                      fontSize: 20
-                  },
                   scales: {
                       yAxes: [{
                           ticks: {
@@ -51,12 +46,16 @@ export default {
                   {
                       label: '# of Views',
                       data: offerData.map(offer => offer.views),
-                      fill: false
+                      fill: false,
+                      borderColor: '#f7b731',
+                      backgroundColor: 'rgba(247, 183, 49,0.75)'
                   },
                   {
                       label: '# of Accepts',
                       data: offerData.map(offer => offer.accepts),
-                      fill: false
+                      fill: false,
+                      borderColor: '#20bf6b',
+                      backgroundColor: 'rgba(32, 191, 107,0.75)'
                   }
               ]
               this.renderChart(this.chartData, this.options)
