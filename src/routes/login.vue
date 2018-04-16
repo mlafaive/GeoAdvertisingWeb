@@ -54,7 +54,7 @@ export default {
 				// Get acocunt businesses
 				this.$store.dispatch("getBusinesses")
 
-				// Redirect to Home
+				// Redirect to Dashboard
 				this.$router.push({path: '/account-dashboard'})
 			})
 			.catch((err) => {

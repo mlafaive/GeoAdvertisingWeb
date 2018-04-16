@@ -91,8 +91,8 @@ export default {
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
 
-				// Send to dashboard
-				window.location.href = '/account-dashboard'
+				// Redirect to Dashboard
+				this.$router.push({path: '/account-dashboard'})
 			})
 			.catch((err) => {
 				console.error(err)
