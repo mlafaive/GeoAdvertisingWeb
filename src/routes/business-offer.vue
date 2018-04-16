@@ -5,7 +5,7 @@
 	        <h1 class='mt-2 font-weight-light d-inline-block'>{{offer.description}}</h1>
 	      </b-col>
 	      <b-col class='text-center text-md-right'>
-	        <b-button v-b-toggle.updateForm variant='link' v-on:click="toggleCreateBtn">{{btnText}}</b-button>
+	        <b-button v-b-toggle.updateForm variant='warning' v-on:click="toggleCreateBtn">{{btnText}}</b-button>
 	      </b-col>
 	    </b-row>
 
@@ -24,7 +24,7 @@
 		<b-row>
 			<b-col class='mt-4 mb-4'>
 				<b-collapse id="updateForm">
-					<OfferUpdate v-if='offer.interests' modal='updateForm' :offer='offer' :getOffer='getOffer' class='p-4 m-0 border border-warning rounded'></OfferUpdate>
+					<OfferUpdate v-if='offer.interests' modal='updateForm' :toggleBtn='toggleCreateBtn' :offer='offer' :getOffer='getOffer' class='p-4 m-0 border border-warning rounded'></OfferUpdate>
 				</b-collapse>
 			</b-col>
 		</b-row>

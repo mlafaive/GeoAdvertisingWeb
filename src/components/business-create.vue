@@ -74,7 +74,7 @@
     var gmAPI = new GoogleMapsAPI(googleMapsConfig)
 
     export default {
-        props: ['modal'],
+        props: ['modal', 'toggleBtn'],
         data() {
           return {
             loading: false,
@@ -129,6 +129,9 @@
                 if (this.modal) {
                   this.$root.$emit('bv::toggle::collapse', this.modal)
                 }
+                // toggle the button text
+                if (this.toggleBtn)
+                  this.toggleBtn()
               })
               .catch((err) => {
                 this.loading = false;

@@ -22,7 +22,7 @@
     <b-row>
       <b-col class='mt-4 mb-4'>
         <b-collapse id="createForm">
-          <BusinessCreate modal='createForm' class='p-4 m-0 border border-success rounded'></BusinessCreate>
+          <BusinessCreate modal='createForm' :toggleBtn='toggleCreateBtn' class='p-4 m-0 border border-success rounded'></BusinessCreate>
         </b-collapse>
       </b-col>
     </b-row>
