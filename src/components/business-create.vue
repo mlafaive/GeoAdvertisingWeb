@@ -44,8 +44,11 @@
 
         <b-form-row>
           <b-col>
-            <b-button type="submit" variant='success' class='mt-2'>
+            <b-button v-if="!loading" type="submit" variant='success' class='mt-2'>
               + Create Business
+            </b-button>
+            <b-button v-else disabled variant='success' class='mt-2'>
+              <i class="fa fa-spinner fa-spin"></i>
             </b-button>
           </b-col>
         </b-form-row>
@@ -75,6 +78,7 @@
     export default {
         data() {
           return {
+            loading: false,
             error: null,
             dba: '',
             address: '',
@@ -103,31 +107,34 @@
                 }
             },
             create: function() {
-            this.$http.post(
-              'businesses',
-              {
-                name: this.dba,
-                store_address: this.address,
-                city_name: this.city,
-                state_name: this.state
-              }
-            )
-            .then((data) => {
-              console.log(data)
-              // Refresh the businesses
-              this.$store.dispatch('getBusinesses')
-              // Clear the form
-              document.getElementById("createBusiness").reset()
-              // clear errors
-              this.error = null
-            })
-            .catch((err) => {
-              console.log(err)
-              if (err.body.message)
-                this.error = err.body.message
-              else if (err.body.error)
-                this.error = err.body.error
-            })
+              this.loading = true;
+              this.$http.post(
+                'businesses',
+                {
+                  name: this.dba,
+                  store_address: this.address,
+                  city_name: this.city,
+                  state_name: this.state
+                }
+              )
+              .then((data) => {
+                this.loading = false;
+                console.log(data)
+                // Refresh the businesses
+                this.$store.dispatch('getBusinesses')
+                // Clear the form
+                document.getElementById("createBusiness").reset()
+                // clear errors
+                this.error = null
+              })
+              .catch((err) => {
+                this.loading = false;
+                console.log(err)
+                if (err.body.message)
+                  this.error = err.body.message
+                else if (err.body.error)
+                  this.error = err.body.error
+              })
             }
         }
     }

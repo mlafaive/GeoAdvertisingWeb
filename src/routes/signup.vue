@@ -28,7 +28,10 @@
 							<b>Error:</b> {{error}}
 						</b-alert>
 
-						<b-button type="submit" variant="primary" class='mt-4 mb-4' block>Sign Up</b-button>
+						<b-button v-if="!loading" type="submit" variant="primary" class='mt-4 mb-4' block>Sign Up</b-button>
+						<b-button v-else disabled variant="primary" class='mt-4 mb-4' block>
+							<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+						</b-button>
 
 						<router-link to="/login">
 							<p>Already have an account? Login!</p>
@@ -50,6 +53,7 @@ export default {
 	},
 	data: function() {
 		return {
+			loading: false,
 			error: null,
 			name: null,
 			email: null,
@@ -76,6 +80,7 @@ export default {
 		},
 		signup: function() {
 			// Create the user
+			this.loading =  true;
 			this.$http.post(
 				'users',
 				{
@@ -87,6 +92,7 @@ export default {
 			)
 			.then((data) => {
 				// Set local storage variables
+				this.loading =  false;
 				this.$store.commit("email", this.email)
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
@@ -96,6 +102,7 @@ export default {
 			})
 			.catch((err) => {
 				console.error(err)
+				this.loading =  false;
 				this.error = err.body.error
 			})
 		}
