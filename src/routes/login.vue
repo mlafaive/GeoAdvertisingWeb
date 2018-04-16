@@ -12,7 +12,12 @@
 				<b-form-group label="Password:" label-for='password'>
 					<b-form-input type="password" id="password" v-model="password" required></b-form-input>
 				</b-form-group>
-				<b-button block type="submit" variant='primary'>Log In</b-button>
+				<b-button v-if="!loading" block type="submit" variant='primary'>Log In</b-button>
+				<b-button v-else block disabled variant='primary'>
+					<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+				</b-button>
+				
+
 			</b-form>
 			<router-link to="/signup" class="link">
 				<p>No account? Sign up your business with Geode!</p>
@@ -31,6 +36,7 @@ export default {
 	},
 	data: function() {
 		return {
+			loading: false,
 			email: '',
 			password: '',
 			error: null
@@ -38,6 +44,7 @@ export default {
 	},
 	methods: {
 		login: function() {
+			this.loading =  true;
 			this.$http.post(
 				'login',
 				{
@@ -47,6 +54,7 @@ export default {
 			)
 			.then((data) => {
 				// Save tokens and email locally
+				this.loading =  false;
 				this.$store.commit("email", this.email)
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
@@ -59,6 +67,7 @@ export default {
 			})
 			.catch((err) => {
 				console.error(err)
+				this.loading =  false;
 				this.error = err.body.error
 			})
 		}
