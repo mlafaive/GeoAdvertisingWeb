@@ -99,6 +99,8 @@ export default {
             // Clear the form
             document.getElementById("createOffer").reset();
             this.interests = []
+            this.start = null
+            this.end = null
             // clear errors
             this.error = null
         })

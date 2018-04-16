@@ -1,7 +1,7 @@
 <template>
     <header class='mt-5 mb-5'>
         <b-row class='d-flex align-items-center'>
-            <b-col cols='12' md='3' class='text-center text-md-left'>
+            <b-col cols='12' md='3' class='text-center text-md-left mb-4 mb-md-0'>
                 <span class="logo">
                     <router-link exact to="/" class="text-success">geode</router-link>
                 </span>
@@ -37,10 +37,10 @@
                 </ul>
             </b-col>
         </b-row>
-        
+
         <b-modal ref="logoutModal" class="text-centered" size="sm" centered hide-footer title="Log Off">
             <p class="mb-3">Are you sure you want to log off?</p>
-            <div class="mb-2">                    
+            <div class="mb-2">
                 <b-button class="mr-3" @click="hideModal" variant="primary">Stay Logged On</b-button>
                 <b-button variant="danger" class="mb-1" v-on:click="logOut">Log Off</b-button>
             </div>
@@ -50,7 +50,7 @@
 
 <script>
 export default {
-    methods: {        
+    methods: {
         showModal: function () {
             this.$refs.logoutModal.show()
         },

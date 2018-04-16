@@ -139,5 +139,7 @@ nav.navbar-light {
   background-color: #f3f3f3 !important;
 }
 
+nav.navbar a.router-link-active {text-decoration: underline}
+
 /* Bootstrap import */
 @import '~bootstrap/scss/bootstrap.scss'

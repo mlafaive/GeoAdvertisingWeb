@@ -20,7 +20,10 @@
           <b-form-group label='Interests:' label-for='interests'>
             <b-checkbox-group name='interests' v-model='checked' :options='options'></b-checkbox-group>
           </b-form-group>
-          <b-button type='submit' variant='success'>Save Info</b-button>
+          <b-button type='submit' variant='success'>
+            <span v-if='!infoLoading'>Save Info</span>
+            <i v-else class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+          </b-button>
         </b-form>
       </b-col>
     </b-row>
@@ -44,7 +47,10 @@
             <b-form-input v-validate="'required|min:8|max:50|confirmed:newPassword'" :class="{'is-invalid': errors.has('credentials.confirmPassword') }" type='password' name='confirmPassword' v-model='confirmPassword' :value='confirmPassword'></b-form-input>
             <span v-show="errors.has('credentials.confirmPassword')" class="invalid-feedback">Passwords must match</span>
           </b-form-group>
-          <b-button type='submit' variant='warning'>Change Password</b-button>
+          <b-button type='submit' variant='warning'>
+            <span v-if='!credLoading'>Change Password</span>
+            <i v-else class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+          </b-button>
         </b-form>
       </b-col>
     </b-row>
@@ -57,6 +63,8 @@ export default {
     return {
       infoError: null,
       credError: null,
+      infoLoading: null,
+      credLoading: null,
       oldPassword: null,
       newPassword: null,
       confirmPassword: null,
@@ -87,6 +95,7 @@ export default {
 			.catch(console.error)
 		},
     updateInfo: function() {
+      this.infoLoading = true
       let self = this
       let patch = {
         name: self.user.name,
@@ -96,11 +105,14 @@ export default {
       let url = `users/${this.$store.state.email}`
       this.$http.patch(url, patch)
       .then(data => {
+
         this.user = data.body
         this.setChecked()
       })
+      .finally(() => this.infoLoading = null)
     },
     updateCredentials: function() {
+      this.credLoading = true;
       let self = this
       let patch = {
         old_password: self.oldPassword,
@@ -111,7 +123,7 @@ export default {
       let url = `users/${this.$store.state.email}`
       this.$http.patch(url, patch)
       .then((data) => {
-        self.credError = null
+        this.credError = null
         // Clear Form
         self.oldPassword = null
         self.newPassword = null
@@ -123,6 +135,7 @@ export default {
         console.log(err)
         self.credError = err.body.error
       })
+      .finally(() => this.credLoading = null)
     },
     setChecked: function() {
       this.checked = []

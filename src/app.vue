@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class='mb-5'>
     <Header></Header>
     <router-view></router-view>
   </b-container>

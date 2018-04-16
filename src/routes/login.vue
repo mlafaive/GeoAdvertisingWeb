@@ -16,7 +16,7 @@
 				<b-button v-else block disabled variant='primary'>
 					<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
 				</b-button>
-				
+
 
 			</b-form>
 			<router-link to="/signup" class="link">
@@ -54,7 +54,6 @@ export default {
 			)
 			.then((data) => {
 				// Save tokens and email locally
-				this.loading =  false;
 				this.$store.commit("email", this.email)
 				this.$store.commit("access_token", data.body.access_token)
 				this.$store.commit("refresh_token", data.body.refresh_token)
@@ -67,9 +66,9 @@ export default {
 			})
 			.catch((err) => {
 				console.error(err)
-				this.loading =  false;
 				this.error = err.body.error
 			})
+			.finally(() => this.loading = false)
 		}
 	}
 }

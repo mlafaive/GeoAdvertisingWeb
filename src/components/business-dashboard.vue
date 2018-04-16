@@ -5,8 +5,7 @@
         <h1 class='mt-2 font-weight-light d-inline-block'>Business Statistics</h1>
         <div v-if='!relevantOffers.length' class='mt-4'>
           <h4 class='font-weight-light text-danger'>Nothing to see here...</h4>
-          <p class='lead'>
-            Once you have offers that are active or have completed, you will be able to see statistics about customer engagement over time.
+          <p class='lead'>Once you have offers that are active or have completed, you will be able to see statistics about customer engagement over time.
             Get started by creating your first offer in the <router-link :to="{path: `/business/${business_id}/ads`}">My Offers</router-link> page.
           </p>
         </div>

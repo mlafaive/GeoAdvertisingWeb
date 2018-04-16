@@ -88,8 +88,6 @@ const store = new Vuex.Store({
             .then((data) => {
                 let businesses = data.body.businesses
 
-                console.log(businesses)
-
                   // Get a static map for each business
                   businesses.forEach((business) => {
                       let address = `${business.store_address}, ${business.city.city_name}, ${business.city.state_name}`
@@ -104,7 +102,6 @@ const store = new Vuex.Store({
                               }
                           ]
                       })
-                      console.log(business.img)
                   })
 
               // Commit the changes to state
