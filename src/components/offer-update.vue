@@ -16,12 +16,12 @@
                 <b-form-row>
                 <b-col md='6'>
                     <b-form-group label="Start Time:" label-for='start' description='MM/DD/YYYY hh:mm am/pm'>
-                        <b-form-input type="datetime-local" id="start" v-model='start' required></b-form-input>
+                      <datetime v-model='end' type='datetime' input-class='form-control' use12-hour='true'></datetime>
                     </b-form-group>
                 </b-col>
                 <b-col md='6'>
                     <b-form-group label="End Time:" label-for='end' description='MM/DD/YYYY hh:mm am/pm'>
-                        <b-form-input type="datetime-local" id="end" v-model='end' required></b-form-input>
+                      <datetime v-model='end' type='datetime' input-class='form-control' use12-hour='true'></datetime>
                     </b-form-group>
                 </b-col>
                 </b-form-row>

@@ -51,7 +51,7 @@
             <b-col cols='8' offset='2' sm='6' offset-sm='3' lg='4' offset-lg='2'>
                 <OfferAcceptChart :offer='offer' v-show='offer.views'></OfferAcceptChart>
 				<p v-show='!offer.views' class='text-center text-gray-dark'>
-		            <i class='fa fa-circle-notch fa-spin'></i> Waiting on data
+		            <i class='fa fa-circle-notch fa-spin'></i> Waiting for user activity
 		        </p>
             </b-col>
         </b-row>
@@ -64,7 +64,7 @@
             <b-col cols='8' offset='2' sm='6' offset-sm='3' lg='4' offset-lg='2'>
                 <OfferInterestChart v-show='offer.accepts' :offer='offer'></OfferInterestChart>
 				<p v-show='!offer.accepts' class='text-center text-gray-dark'>
-		            <i class='fa fa-circle-notch fa-spin'></i> Waiting on data
+		            <i class='fa fa-circle-notch fa-spin'></i> Waiting for user activity
 		        </p>
             </b-col>
         </b-row>
@@ -86,7 +86,8 @@ export default {
       offer: {},
       editText: '+ Edit offer',
       hideText: '- Hide form',
-      btnText: '+ Edit offer'
+      btnText: '+ Edit offer',
+			interval: null
     };
   },
   methods: {
@@ -124,9 +125,12 @@ export default {
   mounted() {
 	  // Update offer details every 30 seconds
     this.getOffer();
-		setInterval(() => {
+		this.interval = setInterval(() => {
 			this.refreshOffer()
 		}, 15000)
-  }
+  },
+	beforeDestroy() {
+			clearInterval(this.interval)
+	}
 };
 </script>
