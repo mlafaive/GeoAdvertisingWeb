@@ -66,7 +66,7 @@
 import moment from 'moment'
 
 export default {
-    props: ['getOffers'],
+    props: ['getOffers', 'modal'],
   data() {
     return {
         loading: false,
@@ -103,6 +103,10 @@ export default {
             this.end = null
             // clear errors
             this.error = null
+            // Collapse the modal
+            if (this.modal) {
+              this.$root.$emit('bv::toggle::collapse', this.modal)
+            }
         })
         .catch(err => {
           console.log(err);

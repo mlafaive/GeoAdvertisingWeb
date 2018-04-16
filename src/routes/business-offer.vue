@@ -24,7 +24,7 @@
 		<b-row>
 			<b-col class='mt-4 mb-4'>
 				<b-collapse id="updateForm">
-					<OfferUpdate v-if='offer.interests' :offer='offer' :getOffer='getOffer' class='p-4 m-0 border border-warning rounded'></OfferUpdate>
+					<OfferUpdate v-if='offer.interests' modal='updateForm' :offer='offer' :getOffer='getOffer' class='p-4 m-0 border border-warning rounded'></OfferUpdate>
 				</b-collapse>
 			</b-col>
 		</b-row>

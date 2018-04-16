@@ -2,9 +2,7 @@
   <b-row class='flex align-items-center'>
     <b-col md='6'>
       <h3 class='font-weight-light mb-4'>Create a business</h3>
-
       <b-form v-on:submit.prevent='create' id="createBusiness">
-
         <b-form-row>
           <b-col>
             <b-form-group label="Business Name:" label-for="dba">
@@ -76,6 +74,7 @@
     var gmAPI = new GoogleMapsAPI(googleMapsConfig)
 
     export default {
+        props: ['modal'],
         data() {
           return {
             loading: false,
@@ -126,6 +125,10 @@
                 document.getElementById("createBusiness").reset()
                 // clear errors
                 this.error = null
+                // Collapse the modal
+                if (this.modal) {
+                  this.$root.$emit('bv::toggle::collapse', this.modal)
+                }
               })
               .catch((err) => {
                 this.loading = false;
